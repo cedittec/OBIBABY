@@ -1,0 +1,53 @@
+RASPBERRY
+	rm pipe 
+	mkfifo pipe
+	cat pipe | nc 10.49.130.37 5001 &
+	raspivid -o pipe -t 99999
+NEGRA
+	./relay
+		rm pipe
+		mkfifo pipe
+		nc -l -p 5001 < pipe | nc -l -p 5002 > pipe
+MAC
+rm pipe 
+mkfifo pipe
+nc 132.254.29.213 5002 > pipe mplayer &
+mplayer -fps 31 -cache 1024 pipe
+
+
+#10.49.182.117
+
+
+
+
+UDP con relay
+RASPBERRY
+raspivid -t 999999 -b 2000000 -o - | gst-launch-1.0 -e -vvv fdsrc ! h264parse ! rtph264pay pt=96 config-interval=5 ! udpsink host=10.49.130.37 port=7777
+
+NEGRA
+nc -l -u 7776
+socat UDP-LISTEN:7777,fork UDP-LISTEN:7776
+
+MAC
+nc 10.49.130.37 7776
+gst-launch-1.0 udpsrc port=7776 ! application/x-rtp, payload=96 ! rtpjitterbuffer ! rtph264depay ! avdec_h264 ! fpsdisplaysink sync=false text-overlay=false
+
+
+
+
+
+UDP sin relay
+	RASPBERRY
+		raspivid -t 999999 -b 2000000 -o - | gst-launch-1.0 -e -vvv fdsrc ! h264parse ! rtph264pay pt=96 config-interval=5 ! udpsink host=10.49.182.117 port=5000
+
+	MAC
+		gst-launch-1.0 udpsrc port=5000 ! application/x-rtp, payload=96 ! rtpjitterbuffer ! rtph264depay ! avdec_h264 ! fpsdisplaysink sync=false text-overlay=false
+
+
+
+
+
+
+CON SERVER
+
+raspivid -t 0 -w 800 -h 600 -fps 25 -g 5 -b 4000000 -vf -n -o - | gst-launch -v fdsrc ! h264parse ! gdppay ! tcpserversink host=10.49.130.37 port=5000

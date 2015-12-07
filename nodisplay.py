@@ -89,12 +89,12 @@ while True:
 		#db.commit()
 		#print "Sensor de Aire Actualizado en la BD"
 		print "Leyendo sensor de Movimiento"
-		if grovepi.digitalRead(pir_sensor):
+		#if grovepi.digitalRead(pir_sensor):
 			#cur.execute("INSERT INTO log_user_motion (time) VALUES (%s)", (fecha))
 			#db.commit()
 			#print "Sensor de Movimiento Actualizado en la BD"
-		else:
-			print "No hubo movimiento"
+		#else:
+		#	print "No hubo movimiento"
 
 
 		print "--------------------------------------------------"

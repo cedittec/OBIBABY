@@ -1,0 +1,13 @@
+set myip=10.49.140.75
+set port=5000
+set width=320
+set height=240
+
+gst-launch\
+  v4l2src !\
+  ffmpegcolorspace !\
+  video/x-raw-yuv,width=320,height=240,framerate=30 !\
+  jpegenc !\
+  tcpserversink host=10.49.140.75 port=5000 sync=false
+
+###http://10.49.140.75/janus-gateway-streamtest.html 

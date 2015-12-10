@@ -37,12 +37,12 @@ def logMov(time,fecha):
 				"baby_photo": "",
 				"baby_name": "",
 				"baby_birthdate": "",
-				"baby_sex": null,
+				"baby_sex": "null",
 				"baby_weight": "0",
 				"baby_height": "0",
 				"created_at": "2015-08-17 16:12:03",
 				"updated_at": "2015-08-17 16:13:32",
-				"deleted_at": null
+				"deleted_at": "null"
 			}
 		}
 	})
@@ -81,12 +81,12 @@ def logTemp(temperature,humidity,fecha):
 	  			"baby_photo": "",
 	  			"baby_name": "",
 	  			"baby_birthdate": "",
-	  			"baby_sex": null,
+	  			"baby_sex": "null",
 	  			"baby_weight": "0",
 	  			"baby_height": "0",
 	  			"created_at": "2015-08-17 16:12:03",
 	  			"updated_at": "2015-08-17 16:13:32",
-	  			"deleted_at": null
+	  			"deleted_at": "null"
 	  		}
 	  	}
 	})
@@ -125,12 +125,12 @@ def logAir(value,pollution,fecha):
 				"baby_photo": "",
 				"baby_name": "",
 				"baby_birthdate": "",
-				"baby_sex": null,
+				"baby_sex": "null",
 				"baby_weight": "0",
 				"baby_height": "0",
 				"created_at": "2015-08-17 16:12:03",
 				"updated_at": "2015-08-17 16:13:32",
-				"deleted_at": null
+				"deleted_at": "null"
 			}
 		}
 	})

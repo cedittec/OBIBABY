@@ -118,28 +118,58 @@ while True:
 			if(temp>24):
 				dis.clear()
 
-				# Set font scale x2
 				f = Font(1)
-				# Print some large text
 				f.print_string(6, 0, "Estado del ambiente")
 				f = Font(2)
 				f.print_string(10, 32, "Temp alta")
-
-				# Send video buffer to display
 				dis.update()
+				time.sleep(5)
 			if(temp<20):
 				dis.clear()
 
-				# Set font scale x2
-				f = Font(2)
-				# Print some large text
+				f = Font(1)
 				f.print_string(6, 0, "Estado del ambiente")
-
+				f = Font(2)
 				f.print_string(10, 32, "Temp baja")
-
-				# Send video buffer to display
 				dis.update()
+				time.sleep(5)
+			if(humidity>50):
+				dis.clear()
 
-		time.sleep(5)
+				f = Font(1)
+				f.print_string(6, 0, "Estado del ambiente")
+				f = Font(2)
+				f.print_string(10, 32, "Humedad alta")
+				dis.update()
+				time.sleep(5)
+			if(humidity<30):
+				dis.clear()
+
+				f = Font(1)
+				f.print_string(6, 0, "Estado del ambiente")
+				f = Font(2)
+				f.print_string(10, 32, "Humedad baja")
+				dis.update()
+				time.sleep(5)
+			if(sensor_value>10):
+				dis.clear()
+
+				f = Font(1)
+				f.print_string(6, 0, "Estado del ambiente")
+				f = Font(2)
+				f.print_string(10, 32, "Presencia de Gas")
+				dis.update()
+				time.sleep(5)
+			if(air>1):
+				dis.clear()
+
+				f = Font(1)
+				f.print_string(6, 0, "Estado del ambiente")
+				f = Font(2)
+				f.print_string(10, 32, "Mala calidad de Aire")
+				dis.update()
+				time.sleep(5)
+
+		
 	except IOError:
 		print "Error"

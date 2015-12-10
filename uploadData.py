@@ -108,8 +108,6 @@ def logAir(value,pollution,fecha):
 	#JSON que se envia...
 	data = json.dumps({
 		"type": "log_user_air",
-		"value": ".6",
-		"pollution": "high",
 		"data": {
 			"value": ".6",
 			"pollution": "high",

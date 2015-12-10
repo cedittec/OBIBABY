@@ -14,6 +14,10 @@ except ImportError:
 import time
 import os
 
+
+#getCurrent time
+laFecha = time.strftime('%Y-%m-%d %H:%M:%S')
+
 #Declare
 sensorth = 4
 gas_sensor = 1
@@ -23,8 +27,29 @@ grovepi.pinMode(air_sensor,"INPUT")
 pir_sensor = 3
 grovepi.pinMode(pir_sensor,"INPUT")
 
+#Get Temperature and humidity from the declared sensorth
+[temp,humi] = grovepi.dht(sensorth,0)
+logTemp(temp,humi,laFecha)
+print "temp =", temp, " humidity =", humi
 
-def logMov(time):
+#Get the gas sensor value
+gas_value = grovepi.analogRead(gas_sensor)
+sensor_valueAir = grovepi.analogRead(air_sensor)
+air = ""
+#el campo pollution es enum (1-'low', 2-'medium', 3='high')
+if sensor_valueAir > 700:
+	air = "high"
+elif sensor_valueAir > 300:
+	air = "medium"
+else:
+	air = "low"
+print "sensor_valueAir =", sensor_valueAir, " Aire =", air
+logAir(sensor_valueAir,air,laFecha)
+
+#Movimiento queda como 
+
+
+def logMov(time,fecha):
 	#Url de la pagina en la que se hace el registro... 01 800 099 0316   -> 305   
 	log_url = 'http://obibaby.com/api/v1/account/logs/temperatures'
 	#JSON que se envia...
@@ -33,8 +58,8 @@ def logMov(time):
 		"data": {
 			"user_id": "2",
 			"time": "50",
-			"updated_at": "2015-08-17 16:29:27",
-			"created_at": "2015-08-17 16:29:27",
+			"updated_at": fecha,
+			"created_at": fecha,
 			"id": 2
 		},
 		"relationships": {
@@ -67,7 +92,7 @@ def logMov(time):
 	c.perform()
 
 #Registro de temperatura...
-def logTemp(temperature,humidity):
+def logTemp(temperature,humidity,fecha):
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/temperatures'
 	#JSON que se envia...
@@ -77,8 +102,8 @@ def logTemp(temperature,humidity):
 			"value": humidity,
 			"pollution": temperature,
 			"user_id": "2",
-		    "updated_at": "2015-08-17 16:23:25",
-			"created_at": "2015-08-17 16:23:25",
+		    "updated_at": fecha,
+			"created_at": fecha,
 			"id": 5
 	  	},
 	  	"relationships": {
@@ -111,7 +136,7 @@ def logTemp(temperature,humidity):
 	c.perform()
 
 #Usa la API para hacer el registro del log de aire.
-def logAir(value,pollution):
+def logAir(value,pollution,fecha):
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/air'
 	#JSON que se envia...
@@ -121,8 +146,8 @@ def logAir(value,pollution):
 			"value": value,
 			"pollution": pollution,
 			"user_id": "2",
-			"updated_at": "2015-08-17 16:23:25",
-			"created_at": "2015-08-17 16:23:25",
+			"updated_at": fecha,
+			"created_at": fecha,
 			"id": 5
 		},
 		"relationships": {

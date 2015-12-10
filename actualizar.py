@@ -62,11 +62,11 @@ while True:
 
 		#el campo pollution es enum (1-'low', 2-'medium', 3='high')
 		if sensor_valueAir > 700:
-			air = 3
+			air = "high"
 		elif sensor_valueAir > 300:
-			air = 2
+			air = "medium"
 		else:
-			air = 1
+			air = "low"
 		print "sensor_valueAir =", sensor_valueAir, " Aire =", air
 
 
@@ -101,7 +101,7 @@ while True:
 		dis.update()
 		time.sleep (5)
 
-		if (temp<=24 and temp>=20 and humidity<=50 and humidity>=30 and sensor_value<=10 and air==1):
+		if (temp<=24 and temp>=20 and humidity<=50 and humidity>=30 and sensor_value<=10 and air=="low"):
 			dis.clear()
 
 			# Set font scale x2
@@ -160,7 +160,7 @@ while True:
 				f.print_string(10, 32, "Presencia de Gas")
 				dis.update()
 				time.sleep(5)
-			if(air>1):
+			if(air!="low"):
 				dis.clear()
 
 				f = Font(1)

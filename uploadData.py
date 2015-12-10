@@ -14,7 +14,15 @@ except ImportError:
 import time
 import os
 
-print "Hola"
+#Declare
+sensorth = 4
+gas_sensor = 1
+grovepi.pinMode(gas_sensor,"INPUT")
+air_sensor = 0
+grovepi.pinMode(air_sensor,"INPUT")
+pir_sensor = 3
+grovepi.pinMode(pir_sensor,"INPUT")
+
 
 def logMov(time):
 	#Url de la pagina en la que se hace el registro... 01 800 099 0316   -> 305   

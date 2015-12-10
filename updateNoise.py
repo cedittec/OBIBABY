@@ -4,9 +4,9 @@ import time
 import pycurl
 import os
 
-sound_sensor = 5
+sound_sensor = 2
 fecha = time.strftime('%Y-%m-%d %H:%M:%S')
-noise = grovepi.digitalRead(sound_sensor)
+noise = grovepi.analogRead(sound_sensor)
 
 print "sonido "+ str(noise)
 

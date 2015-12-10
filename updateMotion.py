@@ -12,7 +12,7 @@ while grovepi.digitalRead(pir_sensor):
 	sleep(0.2)
 grovepi.pinMode(pir_sensor,"INPUT")
 elapsed_time = time.time() - start_time
-print "movimiento "+ elapsed_time
+print "movimiento "+ str(elapsed_time)
 
 if (elapsed_time > 0):
 	log_url = 'http://obibaby.com/api/v1/account/logs/motion';

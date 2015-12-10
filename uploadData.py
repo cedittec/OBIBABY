@@ -102,14 +102,15 @@ def logTemp(temperature,humidity,fecha):
 
 #Usa la API para hacer el registro del log de aire.
 def logAir(value,pollution,fecha):
+	value = value/1000;
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/air'
 	#JSON que se envia...
 	data = json.dumps({
 		"type": "log_user_air",
 		"data": {
-			"value": value,
-			"pollution": pollution,
+			"value": ".6",
+			"pollution": "high",
 			"user_id": "2",
 			"updated_at": fecha,
 			"created_at": fecha,
@@ -159,11 +160,10 @@ grovepi.pinMode(pir_sensor,"INPUT")
 
 #Get Temperature and humidity from the declared sensorth
 [temp,humi] = grovepi.dht(sensorth,0)
-
-print "temp =", temp, " humidity =", humi
 print ""
 logTemp(temp,humi,laFecha)
 print ""
+print "temp =", temp, " humidity =", humi
 
 #Get the gas sensor value
 gas_value = grovepi.analogRead(gas_sensor)
@@ -176,7 +176,7 @@ elif sensor_valueAir > 300:
 	air = "medium"
 else:
 	air = "low"
-print "sensor_valueAir =", sensor_valueAir, " Aire =", air
 print ""
 logAir(sensor_valueAir,air,laFecha)
 print ""
+print "sensor_valueAir =", sensor_valueAir, " Aire =", air

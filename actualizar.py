@@ -36,10 +36,6 @@ dis.set_memory_addressing_mode(0)
 dis.set_column_address(0, 127)
 dis.set_page_address(0, 7)
 
-#db = MySQLdb.connect(host="10.49.130.37",
-#	user="cedittec",
-#	passwd="server",
-#	db="obiBaby")
 
 sensorth = 4
 gas_sensor = 1
@@ -49,27 +45,18 @@ grovepi.pinMode(air_sensor,"INPUT")
 pir_sensor = 3
 grovepi.pinMode(pir_sensor,"INPUT")
 
-cur = db.cursor()
 
 while True:
-	#if(checar is hay internet)//tabulador a lo que sigue
 	try:
 		fecha = time.strftime('%Y-%m-%d %H:%M:%S')
 		print "Leyendo Temperatura y humedad"
 		[temp,humidity] = grovepi.dht(sensorth,0)
 		print "temp =", temp, " humidity =", humidity
-		#cur.execute("INSERT INTO log_user_temperature (temperature, humidity) VALUES ('%s', '%s')", (temp, humidity))
-		#db.commit()
-		#print "Temperatura y Humedad Actualizado en la BD"
-		GetTempHumi='/GET={"type":"log_user_temperatures","total":1,"data":[{"id":"5","user_id":"2","value":".6","temperature":"'+temp+'","humidity":"'+humidity+'""created_at":"'+fecha+'","updated_at":"'+fecha+'","deleted_at":null}],"relationships":{"user":{"id":"2","name":"Erick","last_name":"","email":"erick2@csgroup.mx","telephone":"","baby_photo":"","baby_name":"","baby_birthdate":"","baby_sex":null,"baby_weight":"0","baby_height":"0","created_at":"2015-08-1716:12:03","updated_at":"2015-08-1716:13:32","deleted_at":null}}}'
-		os.system("curl '"+GetTempHumi+"'")
 
 		print "Leyendo sensor de Gas"
 		sensor_value = grovepi.analogRead(gas_sensor)
 		print "sensor_value =", sensor_value
-		#cur.execute("INSERT INTO log_user_gas (co) VALUES ('%s')", (sensor_value))
-		#db.commit()
-		#print "Sensor de Gas Actualizado en la BD"
+
 		print "Leyendo sensor de Aire"
 		sensor_valueAir = grovepi.analogRead(air_sensor)
 
@@ -80,21 +67,14 @@ while True:
 			air = 2
 		else:
 			air = 1
-
-		GetAire='http://obibaby.com/api/v1/account/logs/air/GET={"type":"log_user_air","total":1,"data":[{"id":"5","user_id":"2","value":"'+sensor_valueAir+'","pollution":"'+air+'","created_at":"'+fecha+'","updated_at":"'+fecha+'","deleted_at":null}],"relationships":{"user":{"id":"2","name":"Erick","last_name":"","email":"erick2@csgroup.mx","telephone":"","baby_photo":"","baby_name":"","baby_birthdate":"","baby_sex":null,"baby_weight":"0","baby_height":"0","created_at":"2015-08-1716:12:03","updated_at":"2015-08-1716:13:32","deleted_at":null}}}'
-		os.system("curl '"+GetAire+"'")
-
 		print "sensor_valueAir =", sensor_valueAir, " Aire =", air
-		#cur.execute("INSERT INTO log_user_air (value, pollution) VALUES ('%s', '%s')", (sensor_valueAir, air))
-		#db.commit()
-		#print "Sensor de Aire Actualizado en la BD"
+
+
 		print "Leyendo sensor de Movimiento"
-		#if grovepi.digitalRead(pir_sensor):
-			#cur.execute("INSERT INTO log_user_motion (time) VALUES (%s)", (fecha))
-			#db.commit()
-			#print "Sensor de Movimiento Actualizado en la BD"
-		#else:
-		#	print "No hubo movimiento"
+		if grovepi.digitalRead(pir_sensor):
+			print "Sensor de Movimiento Actualizado en la BD"
+		else:
+			print "No hubo movimiento"
 
 
 		print "--------------------------------------------------"
@@ -131,6 +111,7 @@ while True:
 
 			# Send video buffer to display
 			dis.update()
+			time.sleep (5)
 		else:
 			if(temp>24):
 				dis.clear()
@@ -157,6 +138,6 @@ while True:
 				# Send video buffer to display
 				dis.update()
 
-		time.sleep(2)
+		time.sleep(5)
 	except IOError:
 		print "Error"

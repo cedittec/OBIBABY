@@ -1,6 +1,7 @@
 import json
 import grovepi
 import time
+from time import sleep
 import os
 
 fecha = time.strftime('%Y-%m-%d %H:%M:%S')

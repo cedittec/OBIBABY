@@ -82,6 +82,7 @@ while True:
 
 
 		# Clear display
+		dis.deactivate_scroll()
 		dis.clear()
 
 		# Set font scale x2

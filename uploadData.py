@@ -14,41 +14,6 @@ except ImportError:
 import time
 import os
 
-
-#getCurrent time
-laFecha = time.strftime('%Y-%m-%d %H:%M:%S')
-
-#Declare
-sensorth = 4
-gas_sensor = 1
-grovepi.pinMode(gas_sensor,"INPUT")
-air_sensor = 0
-grovepi.pinMode(air_sensor,"INPUT")
-pir_sensor = 3
-grovepi.pinMode(pir_sensor,"INPUT")
-
-#Get Temperature and humidity from the declared sensorth
-[temp,humi] = grovepi.dht(sensorth,0)
-logTemp(temp,humi,laFecha)
-print "temp =", temp, " humidity =", humi
-
-#Get the gas sensor value
-gas_value = grovepi.analogRead(gas_sensor)
-sensor_valueAir = grovepi.analogRead(air_sensor)
-air = ""
-#el campo pollution es enum (1-'low', 2-'medium', 3='high')
-if sensor_valueAir > 700:
-	air = "high"
-elif sensor_valueAir > 300:
-	air = "medium"
-else:
-	air = "low"
-print "sensor_valueAir =", sensor_valueAir, " Aire =", air
-logAir(sensor_valueAir,air,laFecha)
-
-#Movimiento queda como 
-
-
 def logMov(time,fecha):
 	#Url de la pagina en la que se hace el registro... 01 800 099 0316   -> 305   
 	log_url = 'http://obibaby.com/api/v1/account/logs/temperatures'
@@ -178,3 +143,35 @@ def logAir(value,pollution,fecha):
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()
+
+
+#getCurrent time
+laFecha = time.strftime('%Y-%m-%d %H:%M:%S')
+
+#Declare
+sensorth = 4
+gas_sensor = 1
+grovepi.pinMode(gas_sensor,"INPUT")
+air_sensor = 0
+grovepi.pinMode(air_sensor,"INPUT")
+pir_sensor = 3
+grovepi.pinMode(pir_sensor,"INPUT")
+
+#Get Temperature and humidity from the declared sensorth
+[temp,humi] = grovepi.dht(sensorth,0)
+logTemp(temp,humi,laFecha)
+print "temp =", temp, " humidity =", humi
+
+#Get the gas sensor value
+gas_value = grovepi.analogRead(gas_sensor)
+sensor_valueAir = grovepi.analogRead(air_sensor)
+air = ""
+#el campo pollution es enum (1-'low', 2-'medium', 3='high')
+if sensor_valueAir > 700:
+	air = "high"
+elif sensor_valueAir > 300:
+	air = "medium"
+else:
+	air = "low"
+print "sensor_valueAir =", sensor_valueAir, " Aire =", air
+logAir(sensor_valueAir,air,laFecha)

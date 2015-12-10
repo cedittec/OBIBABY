@@ -44,7 +44,7 @@ def logMov(time):
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
 	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678')
-	c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
+	c.setopt(pycurl.HTTPHEADER, ['','Accept: application/json'])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()
@@ -88,7 +88,7 @@ def logTemp(temperature,humidity):
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
 	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678')
-	c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
+	c.setopt(pycurl.HTTPHEADER, ['','Accept: application/json'])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()
@@ -132,7 +132,7 @@ def logAir(value,pollution):
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
 	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678')
-	c.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
+	c.setopt(pycurl.HTTPHEADER, ['','Accept: application/json'])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()

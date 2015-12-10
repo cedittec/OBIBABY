@@ -1,7 +1,16 @@
 
 #!/usr/bin/python
-import pycurl, json
+import json
 import grovepi
+import pycurl
+
+try:
+	# python 3
+	from urllib.parse import urlencode
+except ImportError:
+	# python 2
+	from urllib import urlencode
+
 import time
 import os
 
@@ -43,8 +52,8 @@ def logMov(time):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678')
-	c.setopt(pycurl.HTTPHEADER, ['','Accept: application/json'])
+	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()
@@ -87,8 +96,8 @@ def logTemp(temperature,humidity):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678')
-	c.setopt(pycurl.HTTPHEADER, ['','Accept: application/json'])
+	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()
@@ -131,8 +140,8 @@ def logAir(value,pollution):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678')
-	c.setopt(pycurl.HTTPHEADER, ['','Accept: application/json'])
+	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.HTTPHEADER,  ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()

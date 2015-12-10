@@ -159,8 +159,11 @@ grovepi.pinMode(pir_sensor,"INPUT")
 
 #Get Temperature and humidity from the declared sensorth
 [temp,humi] = grovepi.dht(sensorth,0)
-logTemp(temp,humi,laFecha)
+
 print "temp =", temp, " humidity =", humi
+print ""
+logTemp(temp,humi,laFecha)
+print ""
 
 #Get the gas sensor value
 gas_value = grovepi.analogRead(gas_sensor)
@@ -174,4 +177,6 @@ elif sensor_valueAir > 300:
 else:
 	air = "low"
 print "sensor_valueAir =", sensor_valueAir, " Aire =", air
+print ""
 logAir(sensor_valueAir,air,laFecha)
+print ""

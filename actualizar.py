@@ -99,6 +99,7 @@ while True:
 		f.print_string(10, 56, "Aire: "+str(air))
 		# Send video buffer to display
 		dis.update()
+		time.sleep (5)
 
 		if (temp<=24 and temp>=20 and humidity<=50 and humidity>=30 and sensor_value<=10 and air==1):
 			dis.clear()
@@ -118,10 +119,10 @@ while True:
 				dis.clear()
 
 				# Set font scale x2
-				f = Font(2)
+				f = Font(1)
 				# Print some large text
 				f.print_string(6, 0, "Estado del ambiente")
-
+				f = Font(2)
 				f.print_string(10, 32, "Temp alta")
 
 				# Send video buffer to display

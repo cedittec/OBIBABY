@@ -105,7 +105,14 @@ def logAir(value,pollution,fecha):
 	value = value/1000;
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/air'
+
+
+
 	#JSON que se envia...
+	##No funcionará con esta, sino con esta:
+	data = 'value='+str(value)+'&pollution='+str(pollution)
+
+	'''
 	data = json.dumps({
 		"type": "log_user_air",
 		"data": {
@@ -135,6 +142,7 @@ def logAir(value,pollution,fecha):
 			}
 		}
 	})
+	'''
 
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)

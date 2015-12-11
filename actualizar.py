@@ -19,6 +19,7 @@ import subprocess
 #Registro de temperatura...
 def logAlert(alert_id, fecha):
 	#Url de la pagina en la que se hace el registro...
+	print "Enviando alerta con id : "+str(alert_id)
 	log_url = 'http://obibaby.com/api/v1/account/logs/alerts'
 	data = "alert_id="+str(alert_id)
 	'''
@@ -62,6 +63,8 @@ def logAlert(alert_id, fecha):
 	c.setopt(pycurl.POSTFIELDS, data)
 	c.perform()
 
+	print ""
+	print "Alerta enviada"
 
 dis = OLED(1)
 # Start communication

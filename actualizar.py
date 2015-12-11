@@ -2,6 +2,9 @@
 import grovepi
 import time
 import os
+#imports
+import pycurl
+import json
 #Son para el display
 from oled import OLED
 from oled import Font

@@ -142,7 +142,7 @@ while True:
 
 			# Send video buffer to display
 			dis.update()
-			time.sleep (10)
+			time.sleep (5)
 		else:
 			if(temp>24):
 				id=1
@@ -154,7 +154,7 @@ while True:
 				f.print_string(10, 32, "Temp alta")
 				dis.update()
 				logAlert(id,fecha)
-				time.sleep(10)
+				time.sleep(5)
 			if(temp<20):
 				dis.clear()
 
@@ -163,7 +163,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Temp baja")
 				dis.update()
-				time.sleep(10)
+				time.sleep(5)
 			if(humidity>50):
 				dis.clear()
 
@@ -172,7 +172,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Humedad alta")
 				dis.update()
-				time.sleep(10)
+				time.sleep(5)
 			if(humidity<30):
 				dis.clear()
 
@@ -181,7 +181,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Humedad baja")
 				dis.update()
-				time.sleep(10)
+				time.sleep(5)
 			if(sensor_value>10):
 				dis.clear()
 
@@ -190,7 +190,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Presencia de Gas")
 				dis.update()
-				time.sleep(10)
+				time.sleep(5)
 			if(air!="low"):
 				dis.clear()
 
@@ -199,7 +199,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Mala calidad de Aire")
 				dis.update()
-				time.sleep(10)
+				time.sleep(5)
 		
 		
 	except IOError:

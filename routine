@@ -1,3 +1,10 @@
+#Actualizar del github
+updateGit
+
+#finish other processess with python
+sudo killall python
+python /home/pi/Desktop/obibaby/actualizar.py
+
 python /home/pi/Desktop/obibaby/updateNoise.py
 python /home/pi/Desktop/obibaby/updateMotion.py 
 python /home/pi/Desktop/obibaby/uploadData.py

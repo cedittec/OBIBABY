@@ -1,5 +1,5 @@
 import json
-from grovepi import *
+import grovepi
 import time
 import pycurl
 import os

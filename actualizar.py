@@ -44,7 +44,8 @@ def logAlert(alerid, fecha):
   				"updated_at": "2015-08-17 16:13:32",
   				"deleted_at": "null"
   			}
-  		})
+  		}
+  	})
 
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)

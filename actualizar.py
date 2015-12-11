@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import grovepi
+from grovepi import *
 import time
 import os
 #Son para el display

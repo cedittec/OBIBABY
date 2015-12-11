@@ -1,7 +1,5 @@
-
-#!/usr/bin/python
 import json
-import grovepi
+from grovepi import *
 import pycurl
 
 try:

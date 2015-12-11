@@ -62,7 +62,7 @@ def logTemp(temperature,humidity,fecha):
 	log_url = 'http://obibaby.com/api/v1/account/logs/temperatures'
 	#JSON que se envia...
 	data = json.dumps({
-		"type": "log_user_air",
+		"type": "log_user_temperatures",
 		"data": {
 			"value": humidity,
 			"pollution": temperature,

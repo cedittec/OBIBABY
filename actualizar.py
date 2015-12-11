@@ -13,15 +13,47 @@ import subprocess
 #Es una funcion obtenida de esta liga
 #http://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
 
-#Obtiene lo que devuelve el comando.
-def runProcess(exe):
-	p = subprocess.Popen(exe, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-	while(True):
-		retcode = p.poll()
-		line = p.stdout.readline
-		yield line
-		if(retcode is not None):
-			break
+#Registro de temperatura...
+def logAlert(alerid, fecha):
+	#Url de la pagina en la que se hace el registro...
+	log_url = 'http://obibaby.com/api/v1/account/logs/alerts'
+	#JSON que se envia...
+	data = json.dumps({
+		"type": "log_user_alerts",
+		"data": {
+			"user_id": "2",
+			"aler_id": alerid,
+			"updated_at": fecha,
+			"created_at": fecha,
+			"id": 2
+		},
+  		"relationships": {
+  			"user": {
+  				"id": "2",
+  				"name": "Erick",
+  				"last_name": "",
+  				"email": "erick2@csgroup.mx",
+  				"telephone": "",
+  				"baby_photo": "",
+  				"baby_name": "",
+  				"baby_birthdate": "",
+  				"baby_sex": "null",
+  				"baby_weight": "0",
+  				"baby_height": "0",
+  				"created_at": "2015-08-17 16:12:03",
+  				"updated_at": "2015-08-17 16:13:32",
+  				"deleted_at": "null"
+  			}
+  		})
+
+	c = pycurl.Curl()
+	c.setopt(pycurl.URL, log_url)
+	#autenticacion...
+	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
+	c.setopt(pycurl.POST, 1)
+	c.setopt(pycurl.POSTFIELDS, data)
+	c.perform()
 
 
 dis = OLED(1)
@@ -70,13 +102,6 @@ while True:
 		print "sensor_valueAir =", sensor_valueAir, " Aire =", air
 
 
-		print "Leyendo sensor de Movimiento"
-		if grovepi.digitalRead(pir_sensor):
-			print "Sensor de Movimiento Actualizado en la BD"
-		else:
-			print "No hubo movimiento"
-
-
 		print "--------------------------------------------------"
 
 
@@ -116,13 +141,16 @@ while True:
 			time.sleep (5)
 		else:
 			if(temp>24):
+				id=1
 				dis.clear()
 
 				f = Font(1)
 				f.print_string(6, 0, "Estado del ambiente")
 				f = Font(2)
 				f.print_string(10, 32, "Temp alta")
-				dis.update()
+				dis.update(id,fecha)
+				logAlert()
+
 				time.sleep(5)
 			if(temp<20):
 				dis.clear()

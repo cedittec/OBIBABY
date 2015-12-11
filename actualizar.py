@@ -17,9 +17,11 @@ import subprocess
 #http://stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output
 
 #Registro de temperatura...
-def logAlert(alerid, fecha):
+def logAlert(alert_id, fecha):
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/alerts'
+	data = "alert_id="+str(alert_id)
+	'''
 	#JSON que se envia...
 	data = json.dumps({
 		"type": "log_user_alerts",
@@ -49,6 +51,7 @@ def logAlert(alerid, fecha):
   			}
   		}
   	})
+	'''
 
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)

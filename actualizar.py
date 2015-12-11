@@ -126,7 +126,7 @@ while True:
 		# Send video buffer to display
 		dis.update()
 		time.sleep (5)
-
+		'''
 		if (temp<=24 and temp>=20 and humidity<=50 and humidity>=30 and sensor_value<=10 and air=="low"):
 			dis.clear()
 
@@ -198,7 +198,7 @@ while True:
 				f.print_string(10, 32, "Mala calidad de Aire")
 				dis.update()
 				time.sleep(5)
-
+		'''
 		
 	except IOError:
 		print "Error"

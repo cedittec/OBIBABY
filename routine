@@ -1,0 +1,3 @@
+python /home/pi/Desktop/obibaby/updateNoise.py
+python /home/pi/Desktop/obibaby/updateMotion.py 
+python /home/pi/Desktop/obibaby/uploadData.py

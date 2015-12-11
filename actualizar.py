@@ -149,7 +149,7 @@ while True:
 				f.print_string(6, 0, "Estado del ambiente")
 				f = Font(2)
 				f.print_string(10, 32, "Temp alta")
-				dis.update(id,fecha)
+				#dis.update(id,fecha)
 				logAlert()
 
 				time.sleep(5)

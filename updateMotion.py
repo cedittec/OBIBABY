@@ -16,7 +16,8 @@ print "movimiento "+ str(elapsed_time)
 
 if (elapsed_time > 0):
 	log_url = 'http://obibaby.com/api/v1/account/logs/motion';
-
+	data = 'time='+str(elapsed_time)
+	'''
 	data = json.dumps({
 		"type": "log_user_motion",
 		"data": {
@@ -45,6 +46,7 @@ if (elapsed_time > 0):
 			}
 		}
 	})
+	'''
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...

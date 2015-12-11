@@ -109,7 +109,7 @@ def logAir(value,pollution,fecha):
 
 
 	#JSON que se envia...
-	##No funcionará con esta, sino con esta:
+	##No va a funcionar con esta, sino con esta:
 	data = 'value='+str(value)+'&pollution='+str(pollution)
 
 	'''

@@ -9,9 +9,10 @@ import os
 fecha = time.strftime('%Y-%m-%d %H:%M:%S')
 start_time = time.time()
 pir_sensor = 3
+grovepi.pinMode(pir_sensor,"INPUT")
+
 while grovepi.digitalRead(pir_sensor):
 	sleep(0.5)
-grovepi.pinMode(pir_sensor,"INPUT")
 elapsed_time = time.time() - start_time
 print "movimiento "+ str(elapsed_time)
 

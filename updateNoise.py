@@ -11,7 +11,7 @@ tiempo = 0
 
 if (noise>400):
 	start_time = time.time()
-	while grovepi.digitalRead(pir_sensor) > 400:
+	while grovepi.digitalRead(sound_sensor) > 400:
 		sleep(0.5)
 	tiempo = time.time() - start_time
 

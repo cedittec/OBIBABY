@@ -150,7 +150,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Temp alta")
 				#dis.update(id,fecha)
-				logAlert()
+				#logAlert()
 
 				time.sleep(5)
 			if(temp<20):

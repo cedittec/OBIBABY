@@ -102,6 +102,8 @@ while True:
 		#el campo pollution es enum (1-'low', 2-'medium', 3='high')
 		if sensor_valueAir > 700:
 			air = "high"
+			#Mala calidad del aire
+			logAlert(5,fecha)
 		elif sensor_valueAir > 300:
 			air = "medium"
 		else:
@@ -111,6 +113,9 @@ while True:
 
 		print "--------------------------------------------------"
 
+		#Presencia de gas toxico
+		if (sensor_value>10):
+			logAlert(4,fecha)
 
 
 		# Clear display
@@ -156,7 +161,7 @@ while True:
 				f = Font(2)
 				f.print_string(10, 32, "Temp alta")
 				dis.update()
-				logAlert(id,fecha)
+				logAlert(2,fecha)
 				time.sleep(5)
 			if(temp<20):
 				dis.clear()

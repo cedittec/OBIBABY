@@ -16,3 +16,17 @@ if (noise>400):
 	tiempo = time.time() - start_time
 
 print "Sonido "+ str(noise) + " Tiempo: "+ str(tiempo)
+
+if (tiempo > 0):
+	log_url = 'http://obibaby.com/api/v1/account/logs/noise';
+	data = 'value='+str(noise)+'&duration='+str(tiempo)
+	
+	c = pycurl.Curl()
+	c.setopt(pycurl.URL, log_url)
+	#autenticacion...
+	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
+	c.setopt(pycurl.POST, 1)
+	c.setopt(pycurl.POSTFIELDS, data)
+	c.perform()
+	print ""

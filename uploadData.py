@@ -13,6 +13,24 @@ import time
 import os
 
 
+#Registro de temperatura...
+def logGas(value,fecha):
+	#Url de la pagina en la que se hace el registro...
+	log_url = 'http://obibaby.com/api/v1/account/logs/gas'
+	
+	data = 'value='+str(value)
+	
+	c = pycurl.Curl()
+	c.setopt(pycurl.URL, log_url)
+	#autenticacion...
+	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
+	c.setopt(pycurl.POST, 1)
+	c.setopt(pycurl.POSTFIELDS, data)
+	print "Enviando log de gas: "+str(value)
+	c.perform()
+	print ""
+
 
 #Registro de temperatura...
 def logTemp(temperature,humidity,fecha):
@@ -59,7 +77,9 @@ def logTemp(temperature,humidity,fecha):
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
+	print "Enviando sensado de temperatura: "+str(temperature)+ " humedad: "+str(humidity)
 	c.perform()
+	print ""
 
 #Usa la API para hacer el registro del log de aire.
 def logAir(value,pollution,fecha):
@@ -112,7 +132,9 @@ def logAir(value,pollution,fecha):
 	c.setopt(pycurl.HTTPHEADER,  ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
+	print "Enviando log de aire value: "+str(value)+ " pollution: "+str(pollution)
 	c.perform()
+	print ""
 
 
 #getCurrent time
@@ -136,6 +158,7 @@ print "temp =", temp, " humidity =", humi
 
 #Get the gas sensor value
 gas_value = grovepi.analogRead(gas_sensor)
+logGas(gas_value,fecha)
 sensor_valueAir = grovepi.analogRead(air_sensor)
 air = ""
 #el campo pollution es enum (1-'low', 2-'medium', 3='high')

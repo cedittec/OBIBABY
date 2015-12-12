@@ -30,4 +30,4 @@ while True:
 		c.setopt(pycurl.POSTFIELDS, data)
 		c.perform()
 		print ""
-	sleep(5-tiempo)
+	time.sleep(5-tiempo)

@@ -12,7 +12,7 @@ pir_sensor = 3
 grovepi.pinMode(pir_sensor,"INPUT")
 
 while True:
-	while !grovepi.digitalRead(pir_sensor):
+	while grovepi.digitalRead(pir_sensor) == 0:
 		sleep(0.1)
 
 	while grovepi.digitalRead(pir_sensor):

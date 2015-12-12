@@ -154,7 +154,6 @@ grovepi.pinMode(pir_sensor,"INPUT")
 print ""
 logTemp(temp,humi,laFecha)
 print ""
-print "temp =", temp, " humidity =", humi
 
 #Get the gas sensor value
 gas_value = grovepi.analogRead(gas_sensor)

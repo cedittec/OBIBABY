@@ -89,6 +89,13 @@ grovepi.pinMode(pir_sensor,"INPUT")
 
 start_time = time.time()
 while True:
+	sensorth = 4
+	gas_sensor = 1
+	grovepi.pinMode(gas_sensor,"INPUT")
+	air_sensor = 0
+	grovepi.pinMode(air_sensor,"INPUT")
+	pir_sensor = 3
+	grovepi.pinMode(pir_sensor,"INPUT")
 	#Wait 5 minutes
 	if time.time()-start_time >= 300:
 		break

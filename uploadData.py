@@ -36,8 +36,9 @@ def logGas(value,fecha):
 def logTemp(temperature,humidity,fecha):
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/temperatures'
-	temperature = 0
-	humidity = 0
+	
+	#temperature = 0
+	#humidity = 0
 	data = 'temperature='+str(temperature)+'&humidity='+str(humidity)
 	#JSON que se envia...
 	'''

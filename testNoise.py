@@ -15,7 +15,6 @@ while True:
 		while grovepi.digitalRead(sound_sensor) > 400:
 			sleep(0.5)
 		tiempo = time.time() - start_time
-
 	print "Sonido "+ str(noise) + " Tiempo: "+ str(tiempo)
 
 	if (tiempo > 0):

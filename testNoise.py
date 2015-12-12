@@ -6,10 +6,10 @@ import os
 
 sound_sensor = 2
 fecha = time.strftime('%Y-%m-%d %H:%M:%S')
-noise = grovepi.analogRead(sound_sensor)
-tiempo = 0
+
 while True:
 	tiempo = 0
+	noise = grovepi.analogRead(sound_sensor)
 	if (noise>300):
 		start_time = time.time()
 		while grovepi.digitalRead(sound_sensor) > 300:

@@ -10,6 +10,7 @@ fecha = time.strftime('%Y-%m-%d %H:%M:%S')
 while True:
 	tiempo = 0
 	noise = grovepi.analogRead(sound_sensor)
+	#Verify if the sound is loud enough to disturb
 	if (noise>300):
 		start_time = time.time()
 		while grovepi.digitalRead(sound_sensor) > 300:

@@ -85,7 +85,7 @@ def logTemp(temperature,humidity,fecha):
 
 #Usa la API para hacer el registro del log de aire.
 def logAir(value,pollution,fecha):
-	value = value/1000;
+	
 	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/air'
 

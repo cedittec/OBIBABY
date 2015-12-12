@@ -158,7 +158,7 @@ print "temp =", temp, " humidity =", humi
 
 #Get the gas sensor value
 gas_value = grovepi.analogRead(gas_sensor)
-logGas(gas_value,fecha)
+logGas(gas_value,laFecha)
 sensor_valueAir = grovepi.analogRead(air_sensor)
 air = ""
 #el campo pollution es enum (1-'low', 2-'medium', 3='high')

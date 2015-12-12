@@ -117,7 +117,7 @@ while True:
 		if sensor_valueAir > 700:
 			air = "high"
 			#Mala calidad del aire
-			logAlert(5,fecha)
+			logAlert(4,fecha)
 		elif sensor_valueAir > 300:
 			air = "medium"
 		else:
@@ -129,7 +129,7 @@ while True:
 
 		#Presencia de gas toxico
 		if (sensor_value>10):
-			logAlert(4,fecha)
+			logAlert(5,fecha)
 
 
 		# Clear display

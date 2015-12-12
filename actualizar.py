@@ -87,8 +87,12 @@ grovepi.pinMode(air_sensor,"INPUT")
 pir_sensor = 3
 grovepi.pinMode(pir_sensor,"INPUT")
 
-
+start_time = time.time()
 while True:
+	#Wait 5 minutes
+	if time.time()-start_time >= 300:
+		break
+
 	try:
 		fecha = time.strftime('%Y-%m-%d %H:%M:%S')
 		print "Leyendo Temperatura y humedad"

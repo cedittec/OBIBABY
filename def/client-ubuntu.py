@@ -1,7 +1,7 @@
 import os
 import socket
 from wireless import Wireless
-import urllib2
+import httplib
 
 #Reset bluetooth so phantom sessons are over.
 os.system("/etc/init.d/bluetooth stop")
@@ -9,13 +9,12 @@ os.system("/etc/init.d/bluetooth start")
 
 #Try to connect to San Google.
 def internet_on():
+        conn = httplib.HTTPConnection("www.google.com")
         try:
-                response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+                conn.request("HEAD", "/")
                 return True
-        except: 
+        except:
                 return False
-                #urllib2.URLError as err: pass
-        return False
 
 def add_to_file(network_data):
         file = open('/home/pi/Desktop/networks.txt', 'w')

@@ -1,24 +1,22 @@
 import os
 from wireless import Wireless
-import urllib2
+import httplib
 
 def internet_off():
+        conn = httplib.HTTPConnection("www.google.com")
         try:
-                response=urllib2.urlopen('http://74.125.228.100')
+                conn.request("HEAD", "/")
                 return False
-        except: 
+        except:
                 return True
-                #urllib2.URLError as err: pass
-        return False
 
 def internet_on():
+        conn = httplib.HTTPConnection("www.google.com")
         try:
-                response=urllib2.urlopen('http://74.125.228.100')
+                conn.request("HEAD", "/")
                 return True
-        except: 
+        except:
                 return False
-                #urllib2.URLError as err: pass
-        return False
 
 
 
@@ -42,6 +40,6 @@ if (internet_off()):
 			continue
 
 
-#if (internet_off()):
-#	os.system("python /home/pi/Desktop/obibaby/def/client-ubuntu.py")
+if (internet_off()):
+	os.system("python /home/pi/Desktop/obibaby/def/client-ubuntu.py")
 

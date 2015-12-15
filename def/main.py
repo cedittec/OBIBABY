@@ -27,7 +27,8 @@ if (internet_off()):
 	for item in list:
 		try:
 			print item
-			text = str(item)+""
+			text = ""+ item
+			print text
 			ssid,psk = text.split(',')
 			print("ssid: "+bssid+ " pass: "+ psk)
 			wireless.connect(ssid=bssid, password=psk)

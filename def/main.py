@@ -19,10 +19,10 @@ if (internet_off()):
 			ssid,psk = item.split(',')
 			print("ssid: "+bssid+ " pass: "+ psk)
 			wireless.connect(ssid=bssid, password=psk)
-            print("Conecting to selected network")
-            if (internet_on()):
-            		print("Conected")
-                    break;
+			print "Conecting to selected network"
+			if (internet_on()):
+				print("Conected")
+				break;
 		except:
 			continue
 

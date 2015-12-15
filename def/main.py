@@ -35,7 +35,7 @@ if (internet_off()):
 	for item in list:
 		try:
 			print item
-			item = clean_string(item)
+			text = clean_string(item)
 			print text
 			print "Type of text :"+str(type(text))
 			ssid,psk = text.split(",")

@@ -29,7 +29,7 @@ if (internet_off()):
 			print item
 			text = ""+ item
 			print text
-			ssid,psk = text.split(',')
+			ssid,psk = text.split(",")
 			print("ssid: "+bssid+ " pass: "+ psk)
 			wireless.connect(ssid=bssid, password=psk)
 			print "Conecting to selected network"

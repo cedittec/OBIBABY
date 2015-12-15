@@ -10,7 +10,7 @@ def internet_off():
                 return True
                 #urllib2.URLError as err: pass
         return False
-        
+
 def internet_on():
         try:
                 response=urllib2.urlopen('http://74.125.228.100',timeout=1)
@@ -35,6 +35,7 @@ if (internet_off()):
 				print("Conected")
 				break;
 		except:
+			print "Not valid string, carnal"
 			continue
 
 

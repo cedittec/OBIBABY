@@ -3,11 +3,22 @@ from wireless import Wireless
 import urllib2
 
 def internet_off():
-    try:
-        response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+        try:
+                response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+                return False
+        except: 
+                return True
+                #urllib2.URLError as err: pass
         return False
-    except urllib2.URLError as err: pass
-    return True
+        
+def internet_on():
+        try:
+                response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+                return True
+        except: 
+                return False
+                #urllib2.URLError as err: pass
+        return False
 
 if (internet_off()):
 	file = open('/home/pi/Desktop/networks.txt', 'r')

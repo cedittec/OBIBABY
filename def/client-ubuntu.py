@@ -17,9 +17,7 @@ def internet_on():
                 return False
 
 def add_to_file(network_data):
-        file = open('/home/pi/Desktop/networks.txt', 'w')
-        file.write(str(network_data)+"\n")
-        file.close()
+        os.system("echo '"+str(network_data)+"' >> /home/pi/Desktop/networks.txt")
 
 hostMACAddress = '000:15:83:0c:bf:eb' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
 port = 3   # 3 is an arbitrary choice. However, it must match the port used by the client.

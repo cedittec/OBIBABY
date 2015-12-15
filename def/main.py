@@ -20,6 +20,14 @@ def internet_on():
                 #urllib2.URLError as err: pass
         return False
 
+def clean_string(item):
+	tmp = ""
+	for c in list(item):
+		print "Char: ["+c+"]"
+		tmp += c
+	print tmp
+	return tmp
+
 if (internet_off()):
 	file = open('/home/pi/Desktop/networks.txt', 'r')
 	text = file.read()
@@ -27,7 +35,7 @@ if (internet_off()):
 	for item in list:
 		try:
 			print item
-			text = ""+ item
+			item = clean_string(item)
 			print text
 			print "Type of text :"+str(type(text))
 			ssid,psk = text.split(",")

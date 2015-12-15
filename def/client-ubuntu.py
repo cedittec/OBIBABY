@@ -1,11 +1,24 @@
-mport os
+import os
 import socket
 from wireless import Wireless
+import urllib2
 
-#Resetear el bluetoot
+#Reset bluetooth so phantom sessons are over.
 os.system("/etc/init.d/bluetooth stop")
 os.system("/etc/init.d/bluetooth start")
 
+#Try to connect to San Google.
+def internet_on():
+        try:
+                response=urllib2.urlopen('http://74.125.228.100',timeout=1)
+                return True
+        except urllib2.URLError as err: pass
+        return False
+
+def add_to_file(network_data):
+        file = open('/home/pi/Desktop/networks.txt', 'w')
+        file.write(str(network_data)+"\n")
+        file.close()
 
 hostMACAddress = '000:15:83:0c:bf:eb' # The MAC address of a Bluetooth adapter on the server. The server might have multiple Bluetooth adapters.
 port = 3   # 3 is an arbitrary choice. However, it must match the port used by the client.
@@ -28,7 +41,9 @@ try:
                         bssid,psk = data.split(',')
                         print("ssid: "+bssid+ " pass: "+ psk)
                         wireless.connect(ssid=bssid, password=psk)
-                        print("Conectado a la BD.")
+                        print("Conectado a internet.")
+                        if (internet_on()):
+                                add_to_file(data);
                         break;
 except:
         print("Closing socket")

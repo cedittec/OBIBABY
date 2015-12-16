@@ -1,13 +1,15 @@
+#routine for obibaby
+#
 
 
-#Actualizar del github
+
+
 #rm -R /home/pi/Desktop/obibaby\
 #git clone 'https://github.com/cedittec/obibaby' /home/pi/Desktop/obibaby
 
 #finish other processess with python
 sudo killall python
 
-python /home/pi/Desktop/obibaby/actualizar.py &
-python /home/pi/Desktop/obibaby/updateNoise.py &
-python /home/pi/Desktop/obibaby/updateMotion.py &
-python /home/pi/Desktop/obibaby/uploadData.py
+python /home/pi/Desktop/obibaby/actualizar.py & 
+update_data &
+update_streaming

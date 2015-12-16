@@ -1,3 +1,6 @@
+rm -R /home/pi/Desktop/tmp
+rm -R /home/pi/Desktop/obibaby
+
 echo "Instalación de dependencia"
 
 echo "Instalación de Grove Pi"
@@ -13,7 +16,7 @@ sudo sh install.sh
 
 #"Ahora se instalará una librería de dependencia del display"
 echo "Instalando dependencia del display y el pip"
-apt-get install libffi-dev python-pip -y
+apt-get install libffi-dev python-pip python-bluetooth -y
 
 echo "Volviendo al directorio tmp"
 cd /home/pi/Desktop/tmp

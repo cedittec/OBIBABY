@@ -36,10 +36,12 @@ if (internet_off()):
 				print("Conected")
 				break
 		except:
-			print "Not valid string, carnal"
+			print "Not connected or invalid input, mi cuate"
 			continue
+
 
 
 if (internet_off()):
 	os.system("python /home/pi/Desktop/obibaby/def/server-bluetooth.py")
-
+else:
+	os.system("update_data & update_streaming")

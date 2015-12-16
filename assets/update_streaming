@@ -1,0 +1,7 @@
+if [["$(curl 'http://104.131.33.240/test.txt')" == '0']]
+then
+	killall raspivid
+	killall gst-launch-0.10
+else
+	raspivid --verbose --nopreview -hf -vf --width 640 --height 480 --framerate 15 --bitrate 1000000 --profile baseline --timeout 0 -o - | gst-launch-0.10 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=104.131.33.240 port=8014 alsasrc device=plughw:Set ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=104.131.33.240 port=8015
+fi

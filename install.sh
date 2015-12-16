@@ -7,7 +7,7 @@ sudo apt-get update -y
 sudo mkdir /home/pi/Desktop/tmp
 cd  /home/pi/Desktop/tmp
 git clone 'https://github.com/DexterInd/GrovePi' /home/pi/Desktop/tmp/GrovePi
-cd /home/pi/Desktop/GrovePi/Script
+cd /home/pi/Desktop/GrovePi/tmp/Script
 sudo chmod +x install.sh
 sudo sh install.sh
 

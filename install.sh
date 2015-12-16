@@ -12,8 +12,8 @@ sudo chmod +x install.sh
 sudo sh install.sh
 
 #"Ahora se instalará una librería de dependencia del display"
-echo "Instalando dependencia del display"
-apt-get install libffi-dev -y
+echo "Instalando dependencia del display y el pip"
+apt-get install libffi-dev python-pip -y
 
 echo "Volviendo al directorio tmp"
 cd /home/pi/Desktop/tmp

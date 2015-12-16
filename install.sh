@@ -44,7 +44,7 @@ sudo pip install wireless
 
 echo "Clonando el proyecto del github de Cedittec"
 #"Se procederá a ir a una carpeta temporal para descargar los archivos de obibaby"
-git clone ‘https://github.com/cedittec/obibaby’ /home/pi/Desktop/obibaby
+git clone 'https://github.com/cedittec/obibaby’ /home/pi/Desktop/obibaby
 
 #Se tienen que copiar los archivos que pasan cada comando via terminal
 echo "Copiando archivos de rutinas a /bin"

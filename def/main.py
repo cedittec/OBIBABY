@@ -41,5 +41,5 @@ if (internet_off()):
 
 
 if (internet_off()):
-	os.system("python /home/pi/Desktop/obibaby/def/client-ubuntu.py")
+	os.system("python /home/pi/Desktop/obibaby/def/server-bluetooth.py")
 

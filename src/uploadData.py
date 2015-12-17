@@ -13,9 +13,8 @@ import time
 import os
 
 
-#Registro de temperatura...
+#Temperature Alert Log...
 def logAlert(alert_id):
-	#Url de la pagina en la que se hace el registro...
 	print "Enviando alerta con id : "+str(alert_id)
 	log_url = 'http://obibaby.com/api/v1/account/logs/alerts'
 	data = "alert_id="+str(alert_id)
@@ -53,7 +52,7 @@ def logAlert(alert_id):
 
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
-	#autenticacion...
+	#authentication...
 	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
@@ -63,16 +62,15 @@ def logAlert(alert_id):
 	print ""
 	print "Alerta enviada"
 
-#Registro de temperatura...
+#Gas log...
 def logGas(value,fecha):
-	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/gas'
 	
 	data = 'value='+str(value)
 	
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
-	#autenticacion...
+	#authentiacation
 	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
@@ -85,13 +83,10 @@ def logGas(value,fecha):
 		logAlert(5)
 
 
-#Registro de temperatura...
+#Temperarure Log...
 def logTemp(temperature,humidity,fecha):
-	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/temperatures'
-	
-	#temperature = 0
-	#humidity = 0
+
 	data = 'temperature='+str(temperature)+'&humidity='+str(humidity)
 	#JSON que se envia...
 	'''
@@ -127,7 +122,7 @@ def logTemp(temperature,humidity,fecha):
 	'''
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
-	#autenticacion...
+	#authentication
 	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
@@ -139,16 +134,11 @@ def logTemp(temperature,humidity,fecha):
 		logAlert(2)
 
 
-#Usa la API para hacer el registro del log de aire.
+#Air Log
 def logAir(value,pollution,fecha):
 	
-	#Url de la pagina en la que se hace el registro...
 	log_url = 'http://obibaby.com/api/v1/account/logs/air'
 
-
-
-	#JSON que se envia...
-	##No va a funcionar con esta, sino con esta:
 	data = 'value='+str(value)+'&pollution='+str(pollution)
 
 	'''
@@ -220,7 +210,7 @@ gas_value = grovepi.analogRead(gas_sensor)
 logGas(gas_value,laFecha)
 sensor_valueAir = grovepi.analogRead(air_sensor)
 air = ""
-#el campo pollution es enum (1-'low', 2-'medium', 3='high')
+#Pollution is an enumerator with the next values (1-'low', 2-'medium', 3='high')
 if sensor_valueAir > 700:
 	air = "high"
 elif sensor_valueAir > 300:

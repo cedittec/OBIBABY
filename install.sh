@@ -24,7 +24,7 @@ sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools
 echo "Instalacion de paquetería Wireless"
 
 
-sudo pip install wireless 
+sudo pip install wireless pycurl
 
 
 echo "Clonando el proyecto del github de Cedittec"

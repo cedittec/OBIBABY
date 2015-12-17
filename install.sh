@@ -3,26 +3,17 @@ rm -R /home/pi/Desktop/obibaby
 
 echo "Instalación de dependencia"
 
-echo "Instalación de Grove Pi"
 
 sudo apt-get update -y
 sudo mkdir /home/pi/Desktop/tmp
-cd  /home/pi/Desktop/tmp
-git clone 'https://github.com/DexterInd/GrovePi' /home/pi/Desktop/tmp/GrovePi
-cd /home/pi/Desktop/GrovePi/tmp/Script
-sudo chmod +x install.sh
-sudo sh install.sh
 
 echo "Instalando dependencia del display y el pip"
 apt-get install libffi-dev python-pip python-bluetooth -y
 
-echo "Volviendo al directorio tmp"
-cd /home/pi/Desktop/tmp
 
 echo "Se instalará pyMOD-OLED"
 git clone 'https://github.com/SelfDestroyer/pyMOD-OLED.git' /home/pi/Desktop/tmp/pyMOD-OLED
-cd /home/pi/Desktop/tmp/pyMOD-OLED
-python setup.py install
+python /home/pi/Desktop/tmp/pyMOD-OLED/setup.py install
 
 
 
@@ -54,15 +45,13 @@ chmod +x /bin/update_streaming
 
 echo "Editando crontab para realizar rutinas cada 5 minutos"
 
-cd /home/pi/Desktop/tmp
-crontab -l > aux_cron
+crontab -l > /home/pi/Desktop/tmp/aux_cron
 
 
-echo "*/5 * * * * routine" >> aux_cron
-crontab aux_cron
+echo "*/5 * * * * routine" >> /home/pi/Desktop/tmp/aux_cron
+crontab /home/pi/Desktop/tmp/aux_cron
 
-echo "Saliendo del directorio temporal tmp"
-cd /home/pi/Desktop
+echo "Eliminado el directorio temporal tmp"
 #rm -R /home/pi/Desktop/tmp
 
 echo "Finalizando instalacion"

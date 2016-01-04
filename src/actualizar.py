@@ -88,7 +88,7 @@ while True:
 		time.sleep (5)
 		
 		#Acceptable environment conditions
-		if (temp<=24 and temp>=20 and humidity<=50 and humidity>=30 and sensor_value<=10 and air=="low"):
+		if (temp<=24 and temp>=20 and humidity<=50 and humidity>=30 and sensor_value<=50 and air=="low"):
 			dis.clear()
 
 			# Set font scale x2
@@ -105,7 +105,6 @@ while True:
 			
 			#High temperature alert
 			if(temp>24):
-				id=1
 				dis.clear()
 
 				f = Font(1)

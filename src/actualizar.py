@@ -149,7 +149,7 @@ while True:
 				time.sleep(5)
 
 			#Gas alert
-			if(sensor_value>10):
+			if(sensor_value>50):
 				dis.clear()
 
 				f = Font(1)

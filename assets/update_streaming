@@ -9,13 +9,12 @@ elif [ "$var" = "image" ]
 then
 	killall raspivid
 	killall gst-launch-0.10
-	while [ "$var" = "image" ]
+	while [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
 	do
 		echo ""
 		echo "Image request fetched"
 		echo""
 		python /home/pi/Desktop/obibaby/src/photo.py
-		var=$(curl 'http://104.131.33.240/flags.txt')
 	done
 else
 	echo ""

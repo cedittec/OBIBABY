@@ -4,17 +4,19 @@ then
 	echo ""
 	echo "Video request fetched"
 	echo""
-
 	raspivid --verbose --nopreview -hf -vf --width 640 --height 480 --framerate 15 --bitrate 1000000 --profile baseline --timeout 0 -o - | gst-launch-0.10 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=104.131.33.240 port=8014 alsasrc device=plughw:Set ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=104.131.33.240 port=8015
 elif [ "$var" = "image" ]
 then
-	echo ""
-	echo "Image request fetched"
-	echo""
-
 	killall raspivid
 	killall gst-launch-0.10
-	python /home/pi/Desktop/obibaby/src/photo.py
+	while [ "$var" = "image" ]
+	do
+		echo ""
+		echo "Image request fetched"
+		echo""
+		python /home/pi/Desktop/obibaby/src/photo.py
+		var=$(curl 'http://104.131.33.240/flags.txt')
+	done
 else
 	echo ""
 	echo "No request fetched"

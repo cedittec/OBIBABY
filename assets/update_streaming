@@ -1,7 +1,6 @@
-if [["$(curl 'http://104.131.33.240/flags.txt')" == '0']]
+if [["$(curl 'http://104.131.33.240/flags.txt')" == 'video']]
 then
-	killall raspivid
-	killall gst-launch-0.10
+	raspivid --verbose --nopreview -hf -vf --width 640 --height 480 --framerate 15 --bitrate 1000000 --profile baseline --timeout 0 -o - | gst-launch-0.10 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=104.131.33.240 port=8014 alsasrc device=plughw:Set ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=104.131.33.240 port=8015
 else
 	killall raspivid
 	killall gst-launch-0.10
@@ -9,6 +8,6 @@ else
 	then
 		python /home/pi/Desktop/obibaby/src/photo.py
 	else
-		raspivid --verbose --nopreview -hf -vf --width 640 --height 480 --framerate 15 --bitrate 1000000 --profile baseline --timeout 0 -o - | gst-launch-0.10 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=104.131.33.240 port=8014 alsasrc device=plughw:Set ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=104.131.33.240 port=8015
+		echo "Not flags set."
 	fi
 fi

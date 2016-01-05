@@ -3,7 +3,7 @@ if [ "$(curl 'http://104.131.33.240/flags.txt')" = "video" ]
 then
 	echo ""
 	echo "Video request fetched"
-	echo""
+	echo ""
 
 	#Start streamming video to server. In this case is the server in 104.131.33.240
 
@@ -17,20 +17,20 @@ then
 	killall raspivid
 	killall gst-launch-0.10
 
-	#Start cicle that will be active while the flags file says "image"
+	#Start cicle that will be active until the end of the 5 minutes cicle...
 
 	while [ $(($(date '+%M')%5)) -ne 0 ]
 	do
 		echo ""
 		echo "Image request fetched"
-		echo""
+		echo ""
 		python /home/pi/Desktop/obibaby/src/photo.py
 	done
 else
 
 	echo ""
 	echo "No request fetched"
-	echo""
+	echo ""
 
 	#If there is not request, we shall still destroy proceses that may have been created by the streamming app in another thread.
 

@@ -7,6 +7,8 @@ import os
 camera = picamera.PiCamera()
 #Take picture and save it in the pi desktop with the name 'image.jpg'
 camera.capture('/home/pi/Desktop/image.jpg')
+print "Foto capturada."
 #Upload the photo to the server, with ip, user and password
 #It us done in the next line...
-os.system('sshpass -p "sashaGrey69" scp -r root@104.131.33.240:/root/images/ /home/pi/Desktop/image.jpg')
+print "Subiendo foto"
+os.system('sshpass -p "sashaGrey69" scp /home/pi/Desktop/image.jpg root@104.131.33.240:/root/images/image.jpg')

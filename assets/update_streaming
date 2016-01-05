@@ -19,8 +19,7 @@ then
 
 	#Start cicle that will be active while the flags file says "image"
 
-	while [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" 
-		-a $(date '+%M') % 5 -ne 0 ]
+	while [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" -a $(date '+%M') % 5 -ne 0 ]
 	do
 		echo ""
 		echo "Image request fetched"

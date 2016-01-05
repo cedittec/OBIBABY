@@ -3,7 +3,7 @@ import os
 
 print "Capturando foto..."
 #Take picture and save it in the pi desktop with the name 'image.jpg'
-os.system('raspistill -o /home/pi/Desktop/image.jpg -w 640 -h 480')
+os.system('raspistill -o /home/pi/Desktop/image.jpg -w 320 -h 240')
 print "Foto capturada."
 #Upload the photo to the server, with ip, user and password
 #It us done in the next line...

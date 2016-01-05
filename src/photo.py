@@ -8,4 +8,4 @@ print "Foto capturada."
 #Upload the photo to the server, with ip, user and password
 #It us done in the next line...
 print "Subiendo foto"
-os.system('sshpass -p "sashaGrey69" scp /home/pi/Desktop/image.jpg root@104.131.33.240:/root/images/image.jpg')
+os.system('sshpass -p "sashaGrey69" scp /home/pi/Desktop/image.jpg root@104.131.33.240:/usr/share/nginx/html/image.jpg')

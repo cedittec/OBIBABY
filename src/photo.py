@@ -1,14 +1,9 @@
-#Import the camera module
-import picamera
 #Import the operative system module "os". It is used to run bash commands.
 import os
 
-#Start the camera module object
-print "Inicializando modulo."
-camera = picamera.PiCamera()
 print "Capturando foto..."
 #Take picture and save it in the pi desktop with the name 'image.jpg'
-camera.capture('/home/pi/Desktop/image.jpg')
+os.system('raspistill -o /home/pi/Desktop/image.jpg')
 print "Foto capturada."
 #Upload the photo to the server, with ip, user and password
 #It us done in the next line...

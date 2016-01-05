@@ -1,14 +1,14 @@
 rm -R /home/pi/Desktop/tmp
 rm -R /home/pi/Desktop/obibaby
 
-echo "Instalación de dependencia"
+echo "Instalación de dependencias"
 
 
 sudo apt-get update -y
 sudo mkdir /home/pi/Desktop/tmp
 
 echo "Instalando dependencia del display y el pip"
-apt-get install libffi-dev python-pip python-bluetooth -y
+apt-get install libffi-dev python-pip python-bluetooth sshpass -y
 
 
 echo "Se instalará pyMOD-OLED"
@@ -16,18 +16,15 @@ git clone 'https://github.com/SelfDestroyer/pyMOD-OLED.git' /home/pi/Desktop/tmp
 python /home/pi/Desktop/tmp/pyMOD-OLED/setup.py install
 
 
-
 echo "Instalación del video streaming"
 
-sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools gstreamer0.10-plugins-base libgstreamer-plugins-base0.10-dev gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad libgstreamer-plugins-base1.0-dev -y
+sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools gstreamer0.10-plugins-base libgstreamer-plugins-base0.10-dev gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad libgstreamer-plugins-base1.0-dev python-picamera python-picamera-docs -y
 
 echo "Instalacion de paquetería Wireless"
 
-
 sudo pip install wireless pycurl
 
-
-echo "Clonando el proyecto del github de Cedittec"
+echo "Clonando el proyecto del github de Cedittec en el directorio adecuado"
 
 git clone 'https://github.com/cedittec/obibaby' /home/pi/Desktop/obibaby
 

@@ -26,7 +26,7 @@ size = 10241
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 print("Se declaro el socket")
 s.bind((hostMACAddress,port))
-print("Se declaro la relacion entre la MAC y el puertp")
+print("Se declaro la relacion entre la MAC y el puerto")
 s.listen(backlog)
 try:
         print("Entre al try")
@@ -43,6 +43,9 @@ try:
                         print("Conectado a internet.")
                         if (internet_on()):
                                 add_to_file(data);
+                                client.send("Datos Correctos")
+                        else:
+                        	client.send("No se pudo conectar a esa red")
                         break;
 except:
         print("Closing socket")

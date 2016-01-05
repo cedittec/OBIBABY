@@ -4,7 +4,9 @@ import picamera
 import os
 
 #Start the camera module object
+print "Inicializando modulo."
 camera = picamera.PiCamera()
+print "Capturando foto..."
 #Take picture and save it in the pi desktop with the name 'image.jpg'
 camera.capture('/home/pi/Desktop/image.jpg')
 print "Foto capturada."

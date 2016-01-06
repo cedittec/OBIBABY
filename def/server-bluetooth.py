@@ -43,13 +43,16 @@ try:
                         bssid,psk = data.split(',')
                         print("ssid: "+bssid+ " pass: "+ psk)
                         wireless.connect(ssid=bssid, password=psk)
-                        print("Conectado a internet.")
+                        print("Conectando a internet.")
                         if (internet_on()):
                                 add_to_file(data);
+                                print("Conectado a internet.")
                                 client.send("Datos Correctos")
+                                break;
                         else:
+                                print("No conectado a internet.")
                         	client.send("No se pudo conectar a esa red")
-                        break;
+                        
 except:
         print("Closing socket")
         client.close()

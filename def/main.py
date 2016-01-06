@@ -51,6 +51,6 @@ if (internet_off()):
 
 
 if (internet_off()):
-	os.system("python /home/pi/Desktop/obibaby/def/server-bluetooth.py")
+	os.system("sudo python /home/pi/Desktop/obibaby/def/server-bluetooth.py")
 else:
-	os.system("update_data & update_streaming")
+	os.system("sudo update_data & update_streaming")

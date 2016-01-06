@@ -15,5 +15,5 @@ sudo killall python
 #update_data &
 #update_streaming
 
-python /home/pi/Desktop/obibaby/src/actualizar.py &
-python /home/pi/Desktop/obibaby/def/main.py
+sudo python /home/pi/Desktop/obibaby/src/actualizar.py &
+sudo python /home/pi/Desktop/obibaby/def/main.py

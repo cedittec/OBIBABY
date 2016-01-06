@@ -19,7 +19,14 @@ then
 
 	#Start cicle that will be active until the end of the 5 minutes cicle...
 
-	while [ $(($(date '+%M')%5)) -ne 0 ]
+	while [ $(($(date '+%M')%5)) -eq 0 ]
+	do
+		echo ""
+		echo "Image request fetched"
+		echo ""
+		python /home/pi/Desktop/obibaby/src/photo.py
+	done
+		while [ $(($(date '+%M')%5)) -ne 0 ]
 	do
 		echo ""
 		echo "Image request fetched"

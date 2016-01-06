@@ -21,10 +21,13 @@ then
 
 	while [ $(($(date '+%M')%5)) -eq 0 ]
 	do
-		echo ""
-		echo "Image request fetched"
-		echo ""
-		python /home/pi/Desktop/obibaby/src/photo.py
+		if [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
+		then
+			echo ""
+			echo "Image request fetched"
+			echo ""
+			python /home/pi/Desktop/obibaby/src/photo.py
+		fi
 	done
 		while [ $(($(date '+%M')%5)) -ne 0 ]
 	do

@@ -7,6 +7,8 @@ import httplib
 os.system("/etc/init.d/bluetooth stop")
 os.system("/etc/init.d/bluetooth start")
 
+os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Servidor de bluetooth iniciado\" >> /home/pi/Desktop/log.txt")
+
 #Try to connect to San Google.
 def internet_on():
         conn = httplib.HTTPConnection("www.google.com")
@@ -32,10 +34,12 @@ try:
         print("Entre al try")
         client, address = s.accept()
         print("Hay un cliente")
+        os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Cliente de bluetooth conectado\" >> /home/pi/Desktop/log.txt")
         while 1:
                 print("Esperando datos")
                 data = client.recv(size)
                 print("Recibi datos")
+                os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Cliente de bluetooth envio: "+data+"\" >> /home/pi/Desktop/log.txt")
                 if data:
                         print(data)
                         print("Iniciando objeto de wireless")
@@ -48,9 +52,11 @@ try:
                                 add_to_file(data);
                                 print("Conectado a internet.")
                                 client.send("Datos Correctos")
+                                os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Conetado a la red brindada\" >> /home/pi/Desktop/log.txt")
                                 break;
                         else:
                                 print("No conectado a internet.")
+                                os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> No conectada a la red brindada\" >> /home/pi/Desktop/log.txt")
                         	client.send("No se pudo conectar a esa red")
                         
 except:

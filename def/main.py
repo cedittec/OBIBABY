@@ -2,6 +2,8 @@ import os
 from wireless import Wireless
 import httplib
 
+os.system("echo $(date '+%Y/%M/%D %H:%M:%S') >> /home/pi/Desktop/log.txt")
+
 def internet_off():
         conn = httplib.HTTPConnection("www.google.com")
         try:

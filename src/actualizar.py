@@ -72,7 +72,7 @@ while True:
 			# Set font scale x2
 			f = Font(2)
 			# Print large text
-			f.print_string(6, 0, "Sin Conexión")
+			f.print_string(6, 0, "Sin Conexion")
 			# Send video buffer to display
 			dis.update()
 			time.sleep (5)

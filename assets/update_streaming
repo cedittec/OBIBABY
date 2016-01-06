@@ -1,9 +1,13 @@
 #Check if the request to the flags file in the server says "video"
+
+echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming and images" >> /home/pi/Desktop/log.txt
+
 if [ "$(curl 'http://104.131.33.240/flags.txt')" = "video" ]
 then
 	echo ""
 	echo "Video request fetched"
 	echo ""
+	echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming video" >> /home/pi/Desktop/log.txt
 
 	#Start streamming video to server. In this case is the server in 104.131.33.240
 
@@ -12,6 +16,7 @@ then
 #Check if the request to the flags file in the server says "image"
 elif [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
 then
+	echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming images" >> /home/pi/Desktop/log.txt
 	#Destroy proceses that may have been created by the streamming app in another thread.
 
 	killall raspivid
@@ -43,7 +48,7 @@ else
 	echo ""
 
 	#If there is not request, we shall still destroy proceses that may have been created by the streamming app in another thread.
-
+	echo "$(date '+%Y/%M/%D %H:%M:%S')-> No flags were set" >> /home/pi/Desktop/log.txt
 	killall raspivid
 	killall gst-launch-0.10
 	echo "Not flags set"

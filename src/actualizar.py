@@ -2,10 +2,19 @@
 import grovepi
 import time
 import os
+import httplib
 #Son para el display
 from oled import OLED
 from oled import Font
 from oled import Graphics
+
+def internet_off():
+        conn = httplib.HTTPConnection("www.google.com")
+        try:
+                conn.request("HEAD", "/")
+                return False
+        except:
+                return True
 
 
 dis = OLED(1)
@@ -20,14 +29,6 @@ dis.set_memory_addressing_mode(0)
 dis.set_column_address(0, 127)
 dis.set_page_address(0, 7)
 
-#Setup the sensors
-sensorth = 4
-gas_sensor = 1
-grovepi.pinMode(gas_sensor,"INPUT")
-air_sensor = 0
-grovepi.pinMode(air_sensor,"INPUT")
-pir_sensor = 3
-grovepi.pinMode(pir_sensor,"INPUT")
 
 while True:
 	sensorth = 4
@@ -64,6 +65,17 @@ while True:
 
 
 		print "--------------------------------------------------"
+
+		if(internet_off):
+			# Clear display
+			dis.clear()
+			# Set font scale x2
+			f = Font(2)
+			# Print large text
+			f.print_string(6, 0, "Sin Conexión")
+			# Send video buffer to display
+			dis.update()
+			time.sleep (5)
 
 
 		# Clear display

@@ -31,6 +31,7 @@ if (internet_off()):
 		try:
 			os.system("echo $(date '+%Y/%M/%D %H:%M:%S')-> Red: "+item+" >> /home/pi/Desktop/log.txt")
 			print item
+			os.system("echo $(date '+%Y/%M/%D %H:%M:%S')-> Antes del wireless >> /home/pi/Desktop/log.txt")
 			wireless = Wireless()
 			bssid,psk = item.split(",")
 			print("ssid: "+bssid+ " pass: "+ psk)

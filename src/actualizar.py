@@ -66,7 +66,7 @@ while True:
 
 		print "--------------------------------------------------"
 
-		if(internet_off):
+		if(internet_off()):
 			# Clear display
 			dis.clear()
 			# Set font scale x2

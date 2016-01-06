@@ -33,9 +33,12 @@ try:
         client, address = s.accept()
         print("Hay un cliente")
         while 1:
+                print("Esperando datos")
                 data = client.recv(size)
+                print("Recibi datos")
                 if data:
                         print(data)
+                        print("Iniciando objeto de wireless")
                         wireless = Wireless()
                         bssid,psk = data.split(',')
                         print("ssid: "+bssid+ " pass: "+ psk)

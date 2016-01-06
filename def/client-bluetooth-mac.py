@@ -9,7 +9,7 @@ size = 10241
 s = socket()
 print "Se declaro el socket"
 
-s.connect(serverMACAddress,port)
+s.connect((serverMACAddress,port))
 print "Se ha conectado"
 
 while 1:
@@ -24,6 +24,6 @@ while 1:
     print "Esperando respuesta."
     
     reply = s.recv(size)
-	print reply
+    print str(reply)
 
 s.close()

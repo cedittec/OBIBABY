@@ -53,8 +53,6 @@ do
 		
 		echo "$(date '+%Y/%M/%D %H:%M:%S')-> Image request fetched: uploading new photo..." >> /home/pi/Desktop/log.txt
 		python /home/pi/Desktop/obibaby/src/photo.py
-			
-		done
 	else
 
 		killall raspivid

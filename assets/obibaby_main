@@ -34,6 +34,7 @@ do
 	if ps -ef | grep -v grep | grep main.py ; 
 	then
 		echo "Already up the main.py"
+		break
 	else
 		sudo python /home/pi/Desktop/obibaby/src/main.py
 	fi
@@ -43,7 +44,8 @@ do
 	if ps -ef | grep -v grep | grep updateDisplay.py  ; 
 	then
 		echo "Already up the updateDisplay.py"
+		break
 	else
-		sudo python /home/pi/Desktop/obibaby/src/updateDisplay.py 
+		sudo python /home/pi/Desktop/obibaby/src/updateDisplay.py
 	fi
 done

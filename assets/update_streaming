@@ -1,56 +1,64 @@
+#Update the video streaming and the image use in the raspberry
+
+#Check if it is already running
+COMMAND=$0
+#Exit if the script is already running
+RUNNING=`ps --no-headers -C${COMMAND} | wc -l`
+if [ ${RUNNING} -gt 1 ]; 
+then
+	exit 1
+fi
+
+
+
 #Check if the request to the flags file in the server says "video"
 
 echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming and images" >> /home/pi/Desktop/log.txt
 
-if [ "$(curl 'http://104.131.33.240/flags.txt')" = "video" ]
-then
-	echo ""
-	echo "Video request fetched"
-	echo ""
-	echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming video" >> /home/pi/Desktop/log.txt
+while true;
+do
+	if [ "$(curl 'http://104.131.33.240/flags.txt')" = "video" ]
+	then
+		echo ""
+		echo "Video request fetched"
+		echo ""
+		echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming video" >> /home/pi/Desktop/log.txt
 
-	#Start streamming video to server. In this case is the server in 104.131.33.240
+		#Start streamming video to server. In this case is the server in 104.131.33.240
 
-	raspivid --verbose --nopreview -hf -vf --width 640 --height 480 --framerate 15 --bitrate 1000000 --profile baseline --timeout 0 -o - | gst-launch-0.10 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=104.131.33.240 port=8014 alsasrc device=plughw:Set ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=104.131.33.240 port=8015
+		raspivid --verbose --nopreview -hf -vf --width 640 --height 480 --framerate 15 --bitrate 1000000 --profile baseline --timeout 0 -o - | gst-launch-0.10 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=104.131.33.240 port=8014 alsasrc device=plughw:Set ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=104.131.33.240 port=8015 &
+		
+		while true;
+		do
+			if [ "$(curl 'http://104.131.33.240/flags.txt')" != "video" ]
+			then
+				killall raspivid
+				killall gst-launch-0.10
+			fi
+		done
 
-#Check if the request to the flags file in the server says "image"
-elif [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
-then
-	echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming images" >> /home/pi/Desktop/log.txt
-	#Destroy proceses that may have been created by the streamming app in another thread.
+	#Check if the request to the flags file in the server says "image"
+	elif [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
+	then
+		#Destroy proceses that may have been created by the streamming app in another thread.
 
-	killall raspivid
-	killall gst-launch-0.10
+		killall raspivid
+		killall gst-launch-0.10
 
-	#Start cicle that will be active until the end of the 5 minutes cicle...
+		#Take the photo and upload it to the server...
 
-	while [ $(($(date '+%M')%5)) -eq 0 ]
-	do
-		if [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
-		then
-			echo "$(date '+%Y/%M/%D %H:%M:%S')-> Uploading new photo..." >> /home/pi/Desktop/log.txt
-			echo ""
-			echo "Image request fetched"
-			echo ""
-			python /home/pi/Desktop/obibaby/src/photo.py
-		fi
-	done
-		while [ $(($(date '+%M')%5)) -ne 0 ]
-	do
 		echo ""
 		echo "Image request fetched"
 		echo ""
+		
+		echo "$(date '+%Y/%M/%D %H:%M:%S')-> Image request fetched: uploading new photo..." >> /home/pi/Desktop/log.txt
 		python /home/pi/Desktop/obibaby/src/photo.py
-	done
-else
+			
+		done
+	else
 
-	echo ""
-	echo "No request fetched"
-	echo ""
-
-	#If there is not request, we shall still destroy proceses that may have been created by the streamming app in another thread.
-	echo "$(date '+%Y/%M/%D %H:%M:%S')-> No flags were set" >> /home/pi/Desktop/log.txt
-	killall raspivid
-	killall gst-launch-0.10
-	echo "Not flags set"
-fi
+		killall raspivid
+		killall gst-launch-0.10
+		
+	fi
+done

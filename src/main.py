@@ -3,7 +3,6 @@ from wireless import Wireless
 import httplib
 
 os.system("echo $(date '+%Y/%M/%D %H:%M:%S') >> /home/pi/Desktop/log.txt")
-
 def internet_off():
         conn = httplib.HTTPConnection("www.google.com")
         try:
@@ -19,8 +18,6 @@ def internet_on():
                 return True
         except:
                 return False
-
-
 
 if (internet_off()):
 	file = open('/home/pi/Desktop/networks.txt', 'r')
@@ -48,9 +45,27 @@ if (internet_off()):
 			print "Not connected or invalid input, mi cuate"
 			continue
 
+while(True):
+	if (internet_off()):
+		file = open('/home/pi/Desktop/networks.txt', 'r')
+		text = file.read()
+		list = text.split('\n')
 
+		for item in list:
+			try:
+				print item
+				wireless = Wireless()
+				bssid,psk = item.split(",")
+				print("ssid: "+bssid+ " pass: "+ psk)
+				wireless.connect(ssid=bssid, password=psk)
+				if (internet_on()):
+					print("Conected")
+					break
+				except:
+				print "Not connected or invalid input, mi cuate"
+				continue
 
-if (internet_off()):
-	os.system("sudo python /home/pi/Desktop/obibaby/def/server-bluetooth.py")
-else:
-	os.system("sudo update_data & update_streaming")
+	if (internet_off()):
+		os.system("sudo python /home/pi/Desktop/obibaby/src/server-bluetooth.py")
+	else:
+		os.system("sudo update_data & update_streaming")

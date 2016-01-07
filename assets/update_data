@@ -1,7 +1,21 @@
 
+#Check if it is already running
+COMMAND=$0
+#Exit if the script is already running
+RUNNING=`ps --no-headers -C${COMMAND} | wc -l`
+if [ ${RUNNING} -gt 1 ]; 
+then
+	exit 1
+fi
+
 
 #Update registers of motion, noise, air quality, temperature and gas presence
 
-python /home/pi/Desktop/obibaby/src/updateNoise.py &
-python /home/pi/Desktop/obibaby/src/updateMotion.py &
-python /home/pi/Desktop/obibaby/src/uploadData.py
+while true;
+do
+	python /home/pi/Desktop/obibaby/src/updateNoise.py &
+	python /home/pi/Desktop/obibaby/src/updateMotion.py &
+	python /home/pi/Desktop/obibaby/src/uploadData.py &
+	#It will be done each 300 seconds...
+	sleep 300
+done

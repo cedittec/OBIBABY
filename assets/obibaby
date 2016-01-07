@@ -1,0 +1,32 @@
+#routine for obibaby
+#
+
+COMMAND=$0
+#Exit if the script is already running
+RUNNING=`ps --no-headers -C${COMMAND} | wc -l`
+if [ ${RUNNING} -gt 1 ]; 
+then
+	exit 1
+fi
+
+echo "$(date '+%Y/%M/%D %H:%M:%S')-> ${COMMAND} was callen" >> /home/pi/Desktop/log.txt
+
+#rm -R /home/pi/Desktop/obibaby\
+#git clone 'https://github.com/cedittec/obibaby' /home/pi/Desktop/obibaby
+
+#finish other processess with python
+sudo killall python
+
+
+#python /home/pi/Desktop/obibaby/actualizar.py & 
+#update_data &
+#update_streaming
+
+while true;
+do
+	sudo python /home/pi/Desktop/obibaby/src/main.py
+done &
+while true;
+do
+	sudo python /home/pi/Desktop/obibaby/src/updateDisplay.py 
+done

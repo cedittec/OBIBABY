@@ -1,7 +1,8 @@
 #routine for obibaby
 #
 
-if ps -ef | grep -v grep | grep obibaby_main ; then
+if ps -ef | grep -v grep | grep obibaby_main ; 
+then
 	echo "Already running"
     exit 0
 fi
@@ -30,9 +31,19 @@ sudo killall python
 
 while true;
 do
-	sudo python /home/pi/Desktop/obibaby/src/main.py
+	if ps -ef | grep -v grep | grep main.py ; 
+	then
+		echo "Already up the main.py"
+	else
+		sudo python /home/pi/Desktop/obibaby/src/main.py
+	fi
 done &
 while true;
 do
-	sudo python /home/pi/Desktop/obibaby/src/updateDisplay.py 
+	if ps -ef | grep -v grep | grep updateDisplay.py  ; 
+	then
+		echo "Already up the updateDisplay.py"
+	else
+		sudo python /home/pi/Desktop/obibaby/src/updateDisplay.py 
+	fi
 done

@@ -1,16 +1,5 @@
 #Update the video streaming and the image use in the raspberry
 
-#Check if it is already running
-COMMAND=$0
-#Exit if the script is already running
-RUNNING=`ps --no-headers -C${COMMAND} | wc -l`
-if [ ${RUNNING} -gt 1 ]; 
-then
-	exit 1
-fi
-
-
-
 #Check if the request to the flags file in the server says "video"
 
 echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming and images" >> /home/pi/Desktop/log.txt

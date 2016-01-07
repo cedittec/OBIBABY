@@ -6,6 +6,19 @@ echo "$(date '+%Y/%M/%D %H:%M:%S')-> Starting the service of streamming and imag
 
 while true;
 do
+	#Check if there is internet connection before that...
+
+	echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+
+	if [ $? -eq 0 ]; 
+	then
+		echo "Online"
+	else
+		echo "Offline"
+		break
+	fi
+
+
 	if [ "$(curl 'http://104.131.33.240/flags.txt')" = "video" ]
 	then
 		echo ""

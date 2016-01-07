@@ -61,9 +61,9 @@ while(True):
 				if (internet_on()):
 					print("Conected")
 					break
-				except:
-					print "Not connected or invalid input, mi cuate"
-				continue
+			except:
+				print "Not connected or invalid input, mi cuate"
+			continue
 
 	if (internet_off()):
 		os.system("sudo python /home/pi/Desktop/obibaby/src/server-bluetooth.py")

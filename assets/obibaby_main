@@ -1,28 +1,6 @@
 #routine for obibaby
 #
 
-if ps -ef | grep -v grep | grep obibaby_main ; 
-then
-	echo "Already running"
-    exit 0
-fi
-
-COMMAND=$0
-
-if ps -ef | grep -v grep | grep ${COMMAND} ; 
-then
-	echo "Already running"
-    exit 0
-fi
-
-#Exit if the script is already running
-RUNNING=`ps --no-headers -C${COMMAND} | wc -l`
-if [ ${RUNNING} -gt 1 ]; 
-then
-	echo "Already running"
-	exit 1
-fi
-
 echo "$(date '+%Y/%M/%D %H:%M:%S')-> ${COMMAND} was callen" >> /home/pi/Desktop/log.txt
 
 #rm -R /home/pi/Desktop/obibaby\

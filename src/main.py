@@ -62,7 +62,7 @@ while(True):
 					print("Conected")
 					break
 				except:
-				print "Not connected or invalid input, mi cuate"
+					print "Not connected or invalid input, mi cuate"
 				continue
 
 	if (internet_off()):

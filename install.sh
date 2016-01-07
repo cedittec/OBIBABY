@@ -42,8 +42,8 @@ git clone 'https://github.com/cedittec/obibaby' /home/pi/Desktop/obibaby
 
 echo "Copiando archivos de rutinas a /bin"
 
-sudo cp /home/pi/Desktop/obibaby/assets/obibaby /bin/obibaby
-sudo chmod +x /bin/obibaby
+sudo cp /home/pi/Desktop/obibaby/assets/obibaby_main /bin/obibaby_main
+sudo chmod +x /bin/obibaby_main
 
 sudo cp /home/pi/Desktop/obibaby/assets/update_data /bin/update_data
 sudo chmod +x /bin/update_data

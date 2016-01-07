@@ -1,1 +1,1 @@
-* * * * * /bin/obibaby
+* * * * * /bin/obibaby_main

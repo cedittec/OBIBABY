@@ -63,6 +63,3 @@ except:
         print("Closing socket")
         client.close()
         s.close()
-
-if (internet_on()):
-        os.system("update_data & update_streaming")

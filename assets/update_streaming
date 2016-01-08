@@ -19,7 +19,7 @@ do
 	fi
 
 
-	if [ "$(curl 'http://104.131.33.240/flags.txt')" = "video" ]
+	if [ "$(sudo sshpass -p \"sashaGrey69\" ssh root@104.131.33.240 'head /usr/share/nginx/html/flags.txt')" = "video" ]
 	then
 		echo ""
 		echo "Video request fetched"
@@ -32,7 +32,7 @@ do
 		
 		while true;
 		do
-			if [ "$(curl 'http://104.131.33.240/flags.txt')" != "video" ]
+			if [ "$(sudo sshpass -p \"sashaGrey69\" ssh root@104.131.33.240 'head /usr/share/nginx/html/flags.txt')" != "video" ]
 			then
 				killall raspivid
 				killall gst-launch-0.10
@@ -40,7 +40,7 @@ do
 		done
 
 	#Check if the request to the flags file in the server says "image"
-	elif [ "$(curl 'http://104.131.33.240/flags.txt')" = "image" ]
+	elif [ "$(sudo sshpass -p \"sashaGrey69\" ssh root@104.131.33.240 'head /usr/share/nginx/html/flags.txt')" = "image" ]
 	then
 		#Destroy proceses that may have been created by the streamming app in another thread.
 

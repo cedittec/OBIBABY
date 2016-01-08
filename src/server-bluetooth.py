@@ -60,6 +60,8 @@ try:
                                 os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> No conectada a la red brindada\" >> /home/pi/Desktop/log.txt")
                         	client.send("No se pudo conectar a esa red")
                 else:
+                        print("Voy a matar a bluetooth")
+                        os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Cliente de bluetooth a punto de morir\" >> /home/pi/Desktop/log.txt")
                         break
 except:
         print("Closing socket")

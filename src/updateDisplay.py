@@ -72,7 +72,7 @@ while True:
 			# Set font scale x2
 			f = Font(2)
 			# Print large text
-			f.print_string(6, 0, "Sin Conexion")
+			f.print_string(6, 0, "Sin Conexion a Internet")
 			# Send video buffer to display
 			dis.update()
 			time.sleep (5)
@@ -177,7 +177,7 @@ while True:
 				f = Font(1)
 				f.print_string(6, 0, "Estado del ambiente")
 				f = Font(2)
-				f.print_string(10, 32, "Mala calidad de Aire")
+				f.print_string(10, 32, "Aire\nContaminado")
 				dis.update()
 				time.sleep(5)
 		

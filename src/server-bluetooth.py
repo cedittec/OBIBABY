@@ -32,7 +32,8 @@ print("Se declaro la relacion entre la MAC y el puerto")
 s.listen(backlog)
 try:
         print("Entre al try")
-        s.settimeout(10)
+        #I don't need it anymoar.
+        #s.settimeout(10)
         client, address = s.accept()
         print("Hay un cliente")
         os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Cliente de bluetooth conectado\" >> /home/pi/Desktop/log.txt")

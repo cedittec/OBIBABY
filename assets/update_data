@@ -1,21 +1,40 @@
-
-#Check if it is already running
-COMMAND=$0
-#Exit if the script is already running
-RUNNING=`ps --no-headers -C${COMMAND} | wc -l`
-if [ ${RUNNING} -gt 1 ]; 
-then
-	exit 1
-fi
-
-
 #Update registers of motion, noise, air quality, temperature and gas presence
+
+update_data_killer=0
 
 while true;
 do
+	#Break the while loop and kill the program if there is no connection to internet
+	if [ $update_data_killer != 0 ];
+	then
+		break
+	fi
+
+	#Get the current timer
+	start=$SECONDS
+
 	python /home/pi/Desktop/obibaby/src/updateNoise.py &
 	python /home/pi/Desktop/obibaby/src/updateMotion.py &
 	python /home/pi/Desktop/obibaby/src/uploadData.py &
 	#It will be done each 300 seconds...
-	sleep 300
+	while true;
+	do
+		#Routine that takes 5 minutes, and also kills the whole program if there is no connection to internet.
+
+		#Check if there is internet connection before that...
+		echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+
+		if [ $? -eq 0 ]; 
+		then
+			if [ $(( SECONDS - start )) > 299 ];
+			then
+				break
+			fi
+		else
+			echo "Offline"
+			update_data_killer=1
+			break
+		fi
+
+	done
 done

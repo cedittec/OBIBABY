@@ -14,7 +14,7 @@ do
 	then
 		echo "Online"
 	else
-		echo "Offline"
+		echo "update_streaming: offline"
 		break
 	fi
 

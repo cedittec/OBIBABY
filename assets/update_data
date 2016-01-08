@@ -31,7 +31,7 @@ do
 				break
 			fi
 		else
-			echo "Offline"
+			echo "update_data: offline"
 			update_data_killer=1
 			break
 		fi

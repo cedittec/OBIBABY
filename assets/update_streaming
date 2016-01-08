@@ -36,6 +36,7 @@ do
 			then
 				killall raspivid
 				killall gst-launch-0.10
+				break
 			fi
 		done
 

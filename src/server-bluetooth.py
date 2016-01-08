@@ -37,6 +37,7 @@ try:
         os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Cliente de bluetooth conectado\" >> /home/pi/Desktop/log.txt")
         while 1:
                 print("Esperando datos")
+                s.settimeout(240)
                 data = client.recv(size)
                 print("Recibi datos")
                 os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Cliente de bluetooth envio: "+data+"\" >> /home/pi/Desktop/log.txt")
@@ -58,7 +59,8 @@ try:
                                 print("No conectado a internet.")
                                 os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> No conectada a la red brindada\" >> /home/pi/Desktop/log.txt")
                         	client.send("No se pudo conectar a esa red")
-                        
+                else:
+                        break
 except:
         print("Closing socket")
         client.close()

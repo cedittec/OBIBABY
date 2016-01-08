@@ -66,6 +66,8 @@ while(True):
 			continue
 
 	if (internet_off()):
+		os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Red: Iniciando daemon bluetooth\" >> /home/pi/Desktop/log.txt")
 		os.system("sudo python /home/pi/Desktop/obibaby/src/server-bluetooth.py")
 	else:
+		os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Red: Esta conectado...\" >> /home/pi/Desktop/log.txt")
 		os.system("sudo update_data & update_streaming")

@@ -20,7 +20,7 @@ sudo apt-get update -y
 sudo mkdir /home/pi/Desktop/tmp
 
 echo "Instalando dependencia del display y el pip"
-sudo apt-get install libffi-dev python-pip python-bluetooth sshpass -y
+sudo apt-get install libffi-dev python-pip python-bluetooth sshpass libssl-dev libcurl4-openssl-dev python-dev -y
 
 echo "---------------------------"
 echo "Se instalará pyMOD-OLED"

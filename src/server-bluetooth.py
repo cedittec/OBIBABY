@@ -65,6 +65,10 @@ try:
                         break
 except:
         print("Closing socket")
-        if client:
+        try:
                 client.close()
+        except NameError:
+                print("No habia cliente")
+        else:
+                print("There was a client")
         s.close()

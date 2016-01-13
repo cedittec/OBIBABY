@@ -4,6 +4,7 @@
 
 
 sudo rm -R /home/pi/Desktop/tmp
+sudo rm -R /home/pi/Desktop/starter-log.txt
 sudo rm -R /home/pi/Desktop/obibaby
 
 
@@ -16,25 +17,25 @@ fi
 echo "Instalación de dependencias"
 
 
-sudo apt-get update -y
+sudo apt-get update -y > /home/pi/Desktop/starter-log.txt
 sudo mkdir /home/pi/Desktop/tmp
 
 echo "Instalando dependencia del display y el pip"
-sudo apt-get install libffi-dev python-pip python-bluetooth sshpass libssl-dev libcurl4-openssl-dev python-dev -y
+sudo apt-get install libffi-dev python-pip python-bluetooth sshpass libssl-dev libcurl4-openssl-dev python-dev -y >> /home/pi/Desktop/starter-log.txt
 
 echo "---------------------------"
 echo "Se instalará pyMOD-OLED"
 git clone 'https://github.com/SelfDestroyer/pyMOD-OLED.git' /home/pi/Desktop/tmp/pyMOD-OLED
-python /home/pi/Desktop/tmp/pyMOD-OLED/setup.py install
+python /home/pi/Desktop/tmp/pyMOD-OLED/setup.py install >> /home/pi/Desktop/starter-log.txt
 
 
 echo "Instalación del video streaming"
 
-sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools gstreamer0.10-plugins-base libgstreamer-plugins-base0.10-dev gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad libgstreamer-plugins-base1.0-dev python-picamera python-picamera-docs -y
+sudo apt-get install libgstreamer0.10-0 libgstreamer0.10-dev gstreamer0.10-tools gstreamer0.10-plugins-base libgstreamer-plugins-base0.10-dev gstreamer0.10-plugins-good gstreamer0.10-plugins-ugly gstreamer0.10-plugins-bad libgstreamer-plugins-base1.0-dev python-picamera python-picamera-docs -y >> /home/pi/Desktop/starter-log.txt
 
 echo "Instalacion de paquetería Wireless"
 
-sudo pip install wireless pycurl
+sudo pip install wireless pycurl >> /home/pi/Desktop/starter-log.txt
 
 echo "Clonando el proyecto del github de Cedittec en el directorio adecuado"
 
@@ -51,12 +52,13 @@ sudo chmod +x /bin/update_data
 sudo cp /home/pi/Desktop/obibaby/assets/update_streaming /bin/update_streaming
 sudo chmod +x /bin/update_streaming
 
+echo "Copying the rc.local file to /etc/, so the main loop runs at the system start"
 
-echo "Editando crontab para agregar las rutinas de obibaby (cada minuto checa si el demonio funciona)."
+sudo cp /home/pi/Desktop/obibaby/assets/rc.local /etc/rc.local
+sudo chmod +x /etc/rc.local
 
-sudo crontab /home/pi/Desktop/obibaby/assets/crontab.txt
 
 echo "Eliminado el directorio temporal tmp"
 #rm -R /home/pi/Desktop/tmp
-
+echo "Logs guardados en /home/pi/Desktop/starter-log.txt"
 echo "Finalizando instalacion"

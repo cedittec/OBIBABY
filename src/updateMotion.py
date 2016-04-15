@@ -6,6 +6,10 @@ import pycurl
 import os
 
 
+f = open("/home/pi/Desktop/obibaby/user.txt","rw+")
+data = f.readline()
+user,pasu = data.split(',')
+
 fecha = time.strftime('%Y-%m-%d %H:%M:%S')
 start_time = time.time()
 pir_sensor = 3
@@ -52,7 +56,7 @@ if (elapsed_time > 0):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.USERPWD, "%s:%s" % (user, pasu))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)

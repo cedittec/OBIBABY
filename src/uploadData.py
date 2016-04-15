@@ -13,6 +13,7 @@ import time
 import os
 
 
+
 #Temperature Alert Log...
 def logAlert(alert_id):
 	print "Enviando alerta con id : "+str(alert_id)
@@ -185,6 +186,8 @@ def logAir(value,pollution,fecha):
 	print ""
 	if (value > 700):
 		logAlert(4)
+
+
 
 
 #getCurrent time

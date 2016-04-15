@@ -9,6 +9,10 @@ fecha = time.strftime('%Y-%m-%d %H:%M:%S')
 noise = grovepi.analogRead(sound_sensor)
 tiempo = 0
 
+f = open("/home/pi/Desktop/obibaby/user.txt","rw+")
+data = f.readline()
+user,pasu = data.split(',')
+
 if (noise>400):
 	start_time = time.time()
 	while grovepi.digitalRead(sound_sensor) > 400:
@@ -24,7 +28,7 @@ if (tiempo > 0):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.USERPWD, "%s:%s" % (user, pasu))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)

@@ -1,4 +1,69 @@
 import os
+import time
+import serial
+from wireless import Wireless
+import httplib
+
+
+os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Servidor de Serial iniciado\" >> /home/pi/Desktop/log.txt")
+
+#Try to connect to San Google.
+def internet_on():
+        conn = httplib.HTTPConnection("www.google.com")
+        try:
+                conn.request("HEAD", "/")
+                return True
+        except:
+                return False
+                
+def add_to_file(network_data):
+        os.system("echo '"+str(network_data)+"' >> /home/pi/Desktop/networks.txt")
+
+serialSocket = serial.Serial(      
+        port='/dev/ttyUSB0',
+        baudrate = 9600,
+        parity=serial.PARITY_NONE,
+        stopbits=serial.STOPBITS_ONE,
+        bytesize=serial.EIGHTBITS,
+        timeout=1
+)
+
+while 1:
+        try:
+                data = serialSocket.readline()
+                wireless = Wireless()
+                zero,first,second = data.split(',')
+                if (zero == "network"):
+                        print("ssid: "+first+ " pass: "+ second)
+                        wireless.connect(ssid=first, password=second)
+                        print("Conectando a internet.")
+                        if (internet_on()):
+                                add_to_file(data);
+                                print("Conectado a internet.")
+                                serialSocket.write("Datos Correctos")
+                                os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> Conetado a la red brindada\" >> /home/pi/Desktop/log.txt")
+                                break;
+                        else:
+                                print("No conectado a internet.")
+                                os.system("echo \"$(date '+%Y/%M/%D %H:%M:%S')-> No conectada a la red brindada\" >> /home/pi/Desktop/log.txt")
+                                serialSocket.write("No se pudo conectar a esa red")
+                else:
+                        print("user: "+first+ " pass: "+ second)
+                        #Configuration for user and password....
+                        os.system("echo \""+first+","+second+"\" > /home/pi/Desktop/obibaby/user.txt")
+
+        except:
+                print("Closing serial socket")
+                try:
+                        serialSocket.close()
+                except:
+                        print("Error in serial connection")
+
+
+### Comented code, it used to be like this in order to work in bluetooth...
+
+'''
+import os
 import socket
 from wireless import Wireless
 import httplib
@@ -72,3 +137,6 @@ except:
         else:
                 print("There was a client")
         s.close()
+
+'''
+###End of the commented code.

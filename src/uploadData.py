@@ -14,6 +14,10 @@ import os
 
 
 
+f = open("/home/pi/Desktop/obibaby/user.txt","rw+")
+data = f.readline()
+user,pasu = data.split(',')
+
 #Temperature Alert Log...
 def logAlert(alert_id):
 	print "Enviando alerta con id : "+str(alert_id)
@@ -54,7 +58,7 @@ def logAlert(alert_id):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#authentication...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.USERPWD, "%s:%s" % (user, pasu))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
@@ -72,7 +76,7 @@ def logGas(value,fecha):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#authentiacation
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.USERPWD, "%s:%s" % (user, pasu))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
@@ -124,7 +128,7 @@ def logTemp(temperature,humidity,fecha):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#authentication
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.USERPWD, "%s:%s" % (user, pasu))
 	c.setopt(pycurl.HTTPHEADER, ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
@@ -177,7 +181,7 @@ def logAir(value,pollution,fecha):
 	c = pycurl.Curl()
 	c.setopt(pycurl.URL, log_url)
 	#autenticacion...
-	c.setopt(pycurl.USERPWD, "%s:%s" % ('test@obibaby.com', '12345678'))
+	c.setopt(pycurl.USERPWD, "%s:%s" % (user, pasu))
 	c.setopt(pycurl.HTTPHEADER,  ["Accept: application/json"])
 	c.setopt(pycurl.POST, 1)
 	c.setopt(pycurl.POSTFIELDS, data)
